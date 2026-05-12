@@ -4597,17 +4597,195 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .cm-cluster-label { display: none; }
 }
 
+/* ============ MINI-CHECKS (skim-pause sub-questions inside long modules) ============ */
+.mini-check {
+  background: var(--parchment-warm);
+  border-left: 4px solid var(--brass);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px;
+  margin: 22px 0;
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="dark"] .mini-check { background: rgba(184, 144, 47, 0.10); }
+.mini-check::before {
+  content: '✋';
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  font-size: 26px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.mini-check-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--brass);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.mini-check-q {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--emerald-deep);
+  margin: 6px 0 12px;
+  line-height: 1.45;
+}
+[data-theme="dark"] .mini-check-q { color: var(--brass-light); }
+.mini-check-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0;
+}
+.mini-option {
+  background: var(--paper-bg, white);
+  border: 1.5px solid var(--line);
+  padding: 7px 14px;
+  border-radius: 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-weight: 500;
+}
+.mini-option:hover { border-color: var(--brass); transform: translateY(-1px); }
+.mini-option.correct {
+  background: rgba(45, 88, 71, 0.15);
+  border-color: var(--emerald);
+  color: var(--emerald);
+  font-weight: 700;
+}
+.mini-option.incorrect {
+  background: rgba(161, 77, 42, 0.12);
+  border-color: var(--rust);
+  color: var(--rust);
+}
+[data-theme="dark"] .mini-option { background: rgba(0, 0, 0, 0.20); }
+[data-theme="dark"] .mini-option.correct { color: #6dc09a; background: rgba(109, 192, 154, 0.16); }
+[data-theme="dark"] .mini-option.incorrect { color: #e69b7e; background: rgba(230, 155, 126, 0.14); }
+.mini-check-reveal {
+  display: none;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  line-height: 1.5;
+}
+.mini-check.answered .mini-check-reveal { display: block; }
+.mini-check.answered .mini-option:not(.correct):not(.incorrect) { opacity: 0.5; }
+
+/* ============ MOBILE: extra fixes for the new widgets, Vault, XP HUD ============ */
+@media (max-width: 720px) {
+  /* XP HUD chip — smaller + don't crowd the topbar */
+  #xpHud { top: 56px; right: 8px; gap: 4px; }
+  .xp-chip { font-size: 10px; padding: 3px 8px; }
+  .streak-chip { font-size: 10px; padding: 3px 8px; }
+
+  /* Lab controls: single column on mobile */
+  .lab-controls { grid-template-columns: 1fr; gap: 8px; }
+
+  /* Stoichiometry table — make scrollable + condensed */
+  .stoic-table { font-size: 11px; }
+  .stoic-table th, .stoic-table td { padding: 5px 6px; }
+  .stoic-table input[type="number"] { width: 64px; font-size: 11px; padding: 3px 5px; }
+
+  /* Compare tables — allow horizontal scroll, smaller */
+  .compare-table { display: block; overflow-x: auto; white-space: nowrap; font-size: 12px; }
+  .compare-table th, .compare-table td { white-space: normal; min-width: 90px; }
+
+  /* Hierarchy sorter — bins stack 2-per-row */
+  .sorter-bin { flex: 1 1 calc(50% - 8px); min-width: 0; padding: 8px; min-height: 90px; }
+  .sorter-bin-label { font-size: 12px; }
+  .sorter-bin-rank { font-size: 9px; }
+  .sorter-item { font-size: 11px; padding: 5px 10px; }
+
+  /* Plume game — 2 plumes per row on phone */
+  .plume-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .plume-card { padding: 8px; }
+  .plume-svg { height: 56px; }
+  .plume-name { font-size: 11px; }
+
+  /* Reveal cards (biomimicry, ethics) — single column on phone for breathing room */
+  .reveal-grid { grid-template-columns: 1fr; gap: 10px; }
+  .reveal-card { padding: 14px; }
+  .reveal-card-icon { font-size: 24px; }
+  .reveal-card-prompt { font-size: 14px; }
+
+  /* Widget result rows — stack instead of grid on mobile */
+  .widget-row { grid-template-columns: 1fr; gap: 4px; text-align: left; padding: 8px 12px; }
+  .widget-row-meta { font-size: 11px; }
+  .widget-badge { justify-self: start; }
+
+  /* dB Slider readout — shrink */
+  .db-scale-readout { font-size: 22px; }
+  .db-scale-context { font-size: 12px; }
+
+  /* Vault — smaller padding, smaller stamp */
+  .vault { padding: 24px 16px; }
+  .vault::before { font-size: 12px; padding: 3px 18px; right: -28px; letter-spacing: 0.2em; }
+  .vault-title { font-size: 28px; }
+  .vault-sub { font-size: 13px; }
+  .vault-quiz { padding: 16px; }
+  .vault-q-text { font-size: 14px; }
+  .vault-stat { font-size: 12px; }
+  .vault-btn { padding: 10px 16px; font-size: 13px; }
+  .vault-result-emoji { font-size: 44px; }
+  .vault-result-score { font-size: 36px; }
+  .vault-result-score span { font-size: 22px; }
+  .vault-result-label { font-size: 14px; }
+
+  /* Mini-checks — slightly tighter on phone */
+  .mini-check { padding: 12px 14px; margin: 18px 0; }
+  .mini-check-q { font-size: 14px; }
+  .mini-option { font-size: 12px; padding: 6px 12px; }
+
+  /* Badge grid in XP modal — 2 columns on phone */
+  .badge-grid { grid-template-columns: repeat(2, 1fr); }
+  .badge-icon { font-size: 22px; }
+  .badge-name { font-size: 11px; }
+  .badge-hint { font-size: 9px; }
+}
+
+/* Very narrow phones (< 380px) — extra compaction */
+@media (max-width: 380px) {
+  .vault-title { font-size: 24px; }
+  .vault::before { display: none; }
+  .sorter-bin { flex: 1 1 100%; }
+  .plume-grid { grid-template-columns: 1fr; }
+}
+
 /* Print stylesheet (already supports Ctrl+P) */
 @media print {
   .topbar, .nav-overlay, .nav-drawer, .scroll-top, .tool-dock,
   .practice-modal, .tool-modal, .practice-launcher,
-  .lab-widget, .flashcard-region, .quiz-block { display: none !important; }
+  .lab-widget, .flashcard-region, .quiz-block, .vault, .mini-check,
+  #xpHud { display: none !important; }
   body { background: white; color: black; }
   .section { page-break-inside: avoid; margin-bottom: 24px; }
   .card { border: 1px solid #ddd; box-shadow: none; }
 }
 
 </style>
+
+<!-- Vercel Web Analytics — anonymous, no cookies, no consent banner needed.
+     Auto-tracks pageviews. Custom events fire via window.va('event', { name, ...data }).
+     Enable in Vercel dashboard → Project → Analytics → Enable Web Analytics. -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<!-- GoatCounter — free, privacy-respecting, completely independent of Vercel.
+     Dashboard: https://johnpaulokeke.goatcounter.com -->
+<script data-goatcounter="https://johnpaulokeke.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -5595,6 +5773,18 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     </div>
   </div>
 
+  <div class="mini-check" data-check-id="m4-criteria">
+    <span class="mini-check-eyebrow">✋ Quick check · 5 sec</span>
+    <div class="mini-check-q">Before you scroll on — which of these is NOT a US-EPA criteria pollutant?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">CO</button>
+      <button class="mini-option" data-correct="true">CO₂</button>
+      <button class="mini-option" data-correct="false">SO₂</button>
+      <button class="mini-option" data-correct="false">O₃</button>
+    </div>
+    <div class="mini-check-reveal">CO₂ is a greenhouse gas, regulated separately. The six criteria pollutants: <strong>CO, Pb, NO<sub>x</sub>, PM, SO₂, O₃</strong>. Carbon dioxide is the trick option — important for climate, not a criteria air pollutant.</div>
+  </div>
+
   <div class="lab-widget">
     <div class="lab-widget-title">⚖ Compliance Lab — test any concentration against 3 standards</div>
     <div class="lab-widget-sub">Type a measured pollutant level. The lab tells you instantly whether it complies with WHO 2005, WHO 2021 (the new, stricter limits), and the US NAAQS. Switch units freely — conversion uses molecular weights at 25 °C and 1 atm.</div>
@@ -5797,6 +5987,17 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     </ul>
     <h4>SO<sub>2</sub> control — Flue Gas Desulphurisation (FGD)</h4>
     <p>Limestone slurry spray reacts with SO₂: <code>CaCO₃ + SO₂ + ½O₂ → CaSO₄ + CO₂</code>. Produces saleable <strong>gypsum</strong>. Removal efficiency <strong>90–99%</strong>. L/G ratio 1–4 L per m³ of gas.</p>
+
+  <div class="mini-check" style="margin: 14px 0 4px;" data-check-id="m5-fgr">
+    <span class="mini-check-eyebrow">✋ Pause · why does FGR work?</span>
+    <div class="mini-check-q">Flue Gas Recirculation reduces NO<sub>x</sub> formation by doing what two things at once?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">Adds NH₃ + speeds up the flame</button>
+      <button class="mini-option" data-correct="true">Lowers peak flame T + dilutes available O₂</button>
+      <button class="mini-option" data-correct="false">Heats the fuel + adds platinum catalyst</button>
+    </div>
+    <div class="mini-check-reveal">Recycling 20–30% of cooled flue gas <strong>lowers peak temperature</strong> (the dominant driver of thermal NO<sub>x</sub>) AND <strong>dilutes oxygen</strong>. Both attack NO<sub>x</sub> formation at the same time — that's why it cuts NO<sub>x</sub> 30–60%.</div>
+  </div>
     <h4>End-of-pipe gaseous treatment — the toolkit</h4>
     <table class="compare-table">
       <thead><tr><th>Method</th><th>Mechanism</th><th>Best for</th><th>Efficiency</th></tr></thead>
@@ -5881,6 +6082,18 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       </tbody>
     </table>
     <p style="margin-top: 14px; font-size: 13px; font-style: italic; color: var(--ink-soft);">Key design tools: <strong>Johnstone equation</strong> for venturi efficiency, <strong>Lapple cut-diameter d<sub>50</sub></strong> for cyclones, drift velocity for ESPs, air-to-cloth ratio for baghouses.</p>
+  </div>
+
+  <div class="mini-check" data-check-id="m5-device">
+    <span class="mini-check-eyebrow">✋ Halfway through · skim-check</span>
+    <div class="mini-check-q">A coal plant needs to capture sub-micron fly ash from a huge gas flow at very low pressure drop. Which device?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">Cyclone</button>
+      <button class="mini-option" data-correct="false">Gravity settler</button>
+      <button class="mini-option" data-correct="true">Electrostatic Precipitator (ESP)</button>
+      <button class="mini-option" data-correct="false">Venturi scrubber</button>
+    </div>
+    <div class="mini-check-reveal">ESP wins on this combo: handles 0.1–100 μm down into sub-micron at 95–99%, with extremely low ΔP (&lt; 125 Pa) — critical for huge gas flows. Baghouses match the efficiency but have higher ΔP.</div>
   </div>
 
   <div class="card">
@@ -6057,6 +6270,18 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     </table>
     <p style="margin-top: 12px;">Key relation: <strong>(COD − BOD)</strong> ≈ non-biodegradable organic matter. BOD itself splits into two stages: <strong>CBOD</strong> (carbonaceous, first ~5–10 days) + <strong>NBOD</strong> (nitrogenous, nitrification — kicks in later).</p>
     <p>BOD kinetics is first-order: <code>BOD<sub>t</sub> = BOD<sub>u</sub> · (1 &minus; e<sup>&minus;kt</sup>)</code>, with typical <strong>k ≈ 0.23 / day</strong> at 20 °C. So <strong>BOD₅ ≈ 68% of BOD<sub>u</sub></strong>.</p>
+  </div>
+
+  <div class="mini-check" data-check-id="m6-cod">
+    <span class="mini-check-eyebrow">✋ Quick check · sanity test</span>
+    <div class="mini-check-q">For the SAME wastewater sample, which relation is ALWAYS true?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">BOD &gt; COD</button>
+      <button class="mini-option" data-correct="true">COD ≥ BOD</button>
+      <button class="mini-option" data-correct="false">COD = TOC × 32 / 12</button>
+      <button class="mini-option" data-correct="false">COD = BOD₅</button>
+    </div>
+    <div class="mini-check-reveal">COD oxidises EVERYTHING (biodegradable + refractory). BOD only counts what microbes can degrade. So <strong>COD ≥ BOD</strong> always, and the gap (COD − BOD) ≈ non-biodegradable load.</div>
   </div>
 
   <div class="lab-widget">
@@ -6239,6 +6464,18 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <p style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin-top: 10px;">Settlement continues for <strong>10–30 years</strong> after closure. The site can&rsquo;t be built on until then.</p>
   </div>
 
+  <div class="mini-check" data-check-id="m7-cover">
+    <span class="mini-check-eyebrow">✋ Worth a pause</span>
+    <div class="mini-check-q">Why is daily soil cover so important for a sanitary landfill?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">It speeds up methane formation</button>
+      <button class="mini-option" data-correct="true">Suppresses pests, odour, fire risk and windblown litter</button>
+      <button class="mini-option" data-correct="false">It replaces the need for the bottom liner</button>
+      <button class="mini-option" data-correct="false">It traps leachate inside the cell</button>
+    </div>
+    <div class="mini-check-reveal">Daily cover (~6 inches of earth) is one of the four defining features of a sanitary landfill — it controls vectors, odour, fires, and windblown debris. The liner, leachate collection, and gas wells handle the other problems.</div>
+  </div>
+
   <div class="card">
     <h3>The 5 phases of landfill gas evolution</h3>
     <table class="compare-table">
@@ -6352,6 +6589,18 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <p style="font-family: 'Fraunces', serif; font-size: 18px; font-style: italic; color: var(--emerald-deep); padding: 8px 14px; border-left: 4px solid var(--brass); background: var(--parchment-warm);">&ldquo;Development that meets the needs of the present without compromising the ability of future generations to meet their own needs.&rdquo;</p>
     <p>From <strong><em>Our Common Future</em></strong>, the report of the World Commission on Environment and Development (WCED), chaired by Norwegian Prime Minister <strong>Gro Harlem Brundtland</strong>, published <strong>1987</strong> by the UN through Oxford University Press. It launched &ldquo;sustainable development&rdquo; as a policy concept.</p>
     <p style="font-size: 13px; color: var(--ink-soft); font-style: italic;">The report&rsquo;s argument: <strong>poverty</strong> in the developing world is less the cause than the <em>effect</em> of environmental degradation — caused mostly by the consumption of the industrialised world. If all of humanity lived like North Americans, we&rsquo;d need <strong>four planets</strong>.</p>
+  </div>
+
+  <div class="mini-check" data-check-id="m8-brundtland">
+    <span class="mini-check-eyebrow">✋ Lock it in · 5 sec</span>
+    <div class="mini-check-q">The Brundtland definition was published in which seminal report, in what year?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">Silent Spring · 1962</button>
+      <button class="mini-option" data-correct="true">Our Common Future · 1987</button>
+      <button class="mini-option" data-correct="false">Agenda 21 · 1992</button>
+      <button class="mini-option" data-correct="false">The Earth Charter · 2000</button>
+    </div>
+    <div class="mini-check-reveal">Our Common Future, 1987 — the report of the World Commission on Environment and Development (WCED), chaired by Norwegian PM Gro Harlem Brundtland. This is the single most-quoted document of this course.</div>
   </div>
 
   <div class="card">
@@ -6564,6 +6813,17 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <li><strong>Ecocentric</strong> — whole <em>systems</em> (species, habitats, processes) have intrinsic value, independent of any individual organism.</li>
     </ul>
     <p style="font-style: italic; color: var(--ink-soft); margin-top: 10px;">The lecturer&rsquo;s line: &ldquo;Even if the human race is considered the primary concern of society, animals and plants are in no way less important. They have a right to get their fair share of existence.&rdquo;</p>
+  </div>
+
+  <div class="mini-check" data-check-id="m9-ethics">
+    <span class="mini-check-eyebrow">✋ Spot check</span>
+    <div class="mini-check-q">Which ethical school treats whole ECOSYSTEMS as having intrinsic value (not just individual organisms)?</div>
+    <div class="mini-check-options">
+      <button class="mini-option" data-correct="false">Anthropocentric</button>
+      <button class="mini-option" data-correct="false">Biocentric</button>
+      <button class="mini-option" data-correct="true">Ecocentric</button>
+    </div>
+    <div class="mini-check-reveal"><strong>Ecocentric</strong> — values whole systems (species, habitats, processes). <strong>Biocentric</strong> values every living organism. <strong>Anthropocentric</strong> is the least inclusive: nature has value only as a resource for humans.</div>
   </div>
 
   <div class="lab-widget">
@@ -7192,6 +7452,50 @@ const Store = (() => {
   };
 })();
 
+// =========== ANALYTICS (Vercel + GoatCounter, dual-fire) ===========
+// Pageviews are auto-tracked by both scripts in <head>.
+// Custom events go to BOTH providers so the user has belt-and-suspenders coverage.
+// trackOnce dedupes per-session so a button-mash doesn't blow either quota.
+const Analytics = (() => {
+  const sessionFired = new Set();
+  function sendVercel(name, props) {
+    try {
+      if (typeof window.va === 'function') {
+        window.va('event', Object.assign({ name }, props || {}));
+      }
+    } catch (e) {}
+  }
+  function sendGoatCounter(name, props) {
+    try {
+      if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        // GoatCounter uses path as the event key; flatten props into the title for visibility.
+        const title = props ? Object.entries(props).map(([k, v]) => `${k}=${v}`).join(' · ') : '';
+        window.goatcounter.count({ path: name, title, event: true });
+      }
+    } catch (e) {}
+  }
+  function send(name, props) {
+    sendVercel(name, props);
+    sendGoatCounter(name, props);
+  }
+  return {
+    track(name, props) { send(name, props); },
+    trackOnce(name, props) {
+      if (sessionFired.has(name)) return;
+      sessionFired.add(name);
+      send(name, props);
+    }
+  };
+})();
+
+// Fire once at session start — distinguishes new vs return visitors
+(function() {
+  const KEY = 'analytics:visited';
+  const isReturn = Store.get(KEY, false);
+  Analytics.track('app-opened', { is_return_visitor: isReturn ? 1 : 0 });
+  if (!isReturn) Store.set(KEY, true);
+})();
+
 // =========== XP / STREAK / BADGES (gamification) ===========
 // Lightweight progression layer. XP accumulates on actions (flashcard rate, quiz right,
 // module reviewed, audio listen, widget completion). Badges unlock at milestones.
@@ -7257,6 +7561,7 @@ const XP = (() => {
     const after = levelOf(total);
     if (after.title !== before.title) {
       setTimeout(() => toast(`${after.emoji} Level up — ${after.title}!`, 2600), 400);
+      Analytics.track('xp-level-up', { level: after.title, total_xp: total });
     }
   }
   function unlock(id) {
@@ -7345,10 +7650,12 @@ const XP = (() => {
   document.addEventListener('click', () => {
     const bioCards = document.querySelectorAll('#sec-8 .reveal-card');
     if (bioCards.length > 0 && Array.from(bioCards).every(c => c.classList.contains('revealed'))) {
+      if (!earned.has('biomimicry')) Analytics.track('widget-completed', { widget: 'biomimicry' });
       unlock('biomimicry');
     }
     const ethCards = document.querySelectorAll('#sec-9 .reveal-card');
     if (ethCards.length > 0 && Array.from(ethCards).every(c => c.classList.contains('revealed'))) {
+      if (!earned.has('ethics')) Analytics.track('widget-completed', { widget: 'ethics' });
       unlock('ethics');
     }
   });
@@ -7650,9 +7957,13 @@ document.querySelectorAll('[data-section-check]').forEach(label => {
     if (cb.checked && typeof XP !== 'undefined') {
       XP.add(15, 'review-' + id);
       XP.unlock('first-review');
+      Analytics.track('module-reviewed', { module_id: id });
       // All 9 modules reviewed unlocks the course-clear badge
       const allChecked = document.querySelectorAll('[data-section-check] input:checked').length === document.querySelectorAll('[data-section-check]').length;
-      if (allChecked) XP.unlock('all-modules');
+      if (allChecked) {
+        XP.unlock('all-modules');
+        Analytics.track('all-modules-reviewed');
+      }
     }
   });
 });
@@ -7697,6 +8008,7 @@ const ThemeMgr = (() => {
   function toggle() {
     const cur = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     set(cur === 'dark' ? 'light' : 'dark');
+    Analytics.trackOnce('theme-toggled', { to: cur === 'dark' ? 'light' : 'dark' });
   }
   // Initial application
   apply(effective());
@@ -7916,6 +8228,7 @@ function showMasterResult() {
     XP.add(mqScore * 2, '__silent');
     XP.unlock('master-quiz');
   }
+  Analytics.track('master-quiz-completed', { score: mqScore, total, percent: Math.round(pct*100) });
 
   document.getElementById('mqLabel').textContent = label;
   mqBody.innerHTML = '';
@@ -8672,6 +8985,7 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
   function renderAndAward() {
     render();
     if (typeof XP !== 'undefined') { XP.awardOnce('compliance-lab', 5); XP.unlock('compliance-lab'); }
+    Analytics.trackOnce('widget-used', { widget: 'compliance-lab' });
   }
   pollSel.addEventListener('change', renderAndAward);
   avgSel.addEventListener('change', renderAndAward);
@@ -8807,6 +9121,7 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
       nextBtn.textContent = '↺ Play again';
       nextBtn.style.display = 'inline-flex';
       if (typeof XP !== 'undefined' && score === order.length) XP.unlock('plume-perfect');
+      Analytics.track('widget-completed', { widget: 'plume', score, total: order.length, percent: pct });
       return;
     }
     renderScenario();
@@ -8899,6 +9214,7 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
   rowsHost.addEventListener('input', () => {
     recompute();
     if (typeof XP !== 'undefined') { XP.awardOnce('bod-lab', 5); XP.unlock('bod-lab'); }
+    Analytics.trackOnce('widget-used', { widget: 'bod-lab' });
   });
   recompute();
 })();
@@ -8989,6 +9305,7 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
     const pct = Math.round(100 * correct / ITEMS.length);
     scoreEl.innerHTML = `Score: <strong>${correct} / ${ITEMS.length}</strong> (${pct}%) ${correct === ITEMS.length ? '— 🏆 Hierarchy mastery!' : correct >= 8 ? '— Strong.' : '— Try again.'}`;
     if (typeof XP !== 'undefined' && correct === ITEMS.length) XP.unlock('hierarchy-perfect');
+    Analytics.track('widget-completed', { widget: 'sorter', score: correct, total: ITEMS.length, percent: pct });
   }
 
   function reset() {
@@ -9032,6 +9349,21 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
 document.addEventListener('click', e => {
   const card = e.target.closest('[data-reveal]');
   if (card) card.classList.toggle('revealed');
+});
+
+// =========== MINI-CHECKS (skim-pause sub-questions in long modules) ===========
+// Click a .mini-option, the whole .mini-check reveals correct/incorrect and shows the why.
+document.addEventListener('click', e => {
+  const opt = e.target.closest('.mini-option');
+  if (!opt) return;
+  const check = opt.closest('.mini-check');
+  if (!check || check.classList.contains('answered')) return;
+  check.classList.add('answered');
+  check.querySelectorAll('.mini-option').forEach(o => {
+    if (o.dataset.correct === 'true') o.classList.add('correct');
+    else if (o === opt) o.classList.add('incorrect');
+  });
+  if (typeof Analytics !== 'undefined') Analytics.trackOnce('mini-check-answered', { check_id: check.dataset.checkId || 'unknown' });
 });
 
 // =========== dB COMPARISON LAB (Module IX) ===========
@@ -9126,6 +9458,7 @@ document.addEventListener('click', e => {
       const ok = confirm('An exam is already in progress. Resume or restart?');
       if (!ok) return;
     }
+    Analytics.track('mock-exam-started', { pool_size: AllQuestions.all.length });
     const questions = sampleQuestions(AllQuestions.all, MOCK_SIZE);
     exam = {
       questions,
@@ -9266,6 +9599,7 @@ document.addEventListener('click', e => {
       XP.add(score * 3, '__silent');
       XP.unlock('mock-exam');
     }
+    Analytics.track('mock-exam-completed', { score, total, percent: Math.round(pct*100), auto_submitted: autoSubmitted ? 1 : 0 });
     if (!prevBest || score > prevBest.score) Store.set('mock:best', last);
 
     // Render results
@@ -10219,6 +10553,7 @@ const AudioNarrator = (() => {
       XP.awardOnce('listen-' + sectionId, 4);
       XP.unlock('first-listen');
     }
+    Analytics.trackOnce('listen-used', { section: sectionId });
     const built = buildChunksFor(section);
     if (!built.length) return;
     chunks = built;
@@ -10686,6 +11021,7 @@ const AudioNarrator = (() => {
     answered = false;
     resetBtn.style.display = '';
     quiz.classList.add('show');
+    Analytics.track('vault-started');
     renderQuestion();
   }
   function startBrowse() {
@@ -10787,7 +11123,9 @@ const AudioNarrator = (() => {
     if (typeof XP !== 'undefined') {
       XP.add(score * 4, '__silent');
       if (pct === 100) XP.unlock('vault-perfect');
+      if (pct >= 80) XP.unlock('vault-80');
     }
+    Analytics.track('vault-completed', { score, total, percent: pct, tier: pct === 100 ? 'perfect' : pct >= 80 ? 'excellent' : pct >= 60 ? 'good' : 'learning' });
     if (pct >= 80) confetti();
   }
 

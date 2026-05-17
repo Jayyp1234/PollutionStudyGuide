@@ -4597,6 +4597,137 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .cm-cluster-label { display: none; }
 }
 
+/* ============ SLIDE FIGURES (extracted from lecturer's PDFs) ============ */
+.slide-fig {
+  margin: 18px 0;
+  background: var(--paper-bg, white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  overflow: hidden;
+}
+[data-theme="dark"] .slide-fig { background: rgba(0, 0, 0, 0.15); border-color: var(--line-strong); }
+.slide-fig-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--brass);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+.slide-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  loading: lazy;
+}
+.slide-fig-caption {
+  margin-top: 8px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.4;
+}
+.slide-fig-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.slide-fig-row .slide-fig { margin: 0; }
+@media (max-width: 600px) {
+  .slide-fig-row { grid-template-columns: 1fr; }
+  .slide-fig { padding: 8px; }
+  .slide-fig-caption { font-size: 12px; }
+}
+
+/* ============ INTERACTIVE DIAGRAMS (clickable hotspots + reveal panel) ============ */
+.diagram-interactive {
+  background: var(--paper-bg, white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 22px 0;
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="dark"] .diagram-interactive { background: rgba(0, 0, 0, 0.18); border-color: var(--line-strong); }
+.diagram-title {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--emerald-deep);
+  margin-bottom: 4px;
+}
+[data-theme="dark"] .diagram-title { color: var(--brass-light); }
+.diagram-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.diagram-svg {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  height: auto;
+}
+.diagram-hot {
+  cursor: pointer;
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+.diagram-hot:hover { opacity: 0.85; filter: brightness(1.08); }
+.diagram-hot.active text { font-weight: 700; }
+.diagram-hot.active rect[data-stroke],
+.diagram-hot.active path[data-stroke],
+.diagram-hot.active circle[data-stroke],
+.diagram-hot.active line[data-stroke] {
+  stroke: var(--brass);
+  stroke-width: 3;
+}
+.diagram-info-panel {
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--parchment-warm);
+  border-left: 4px solid var(--brass);
+  border-radius: 6px;
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  min-height: 60px;
+  transition: opacity 0.25s ease;
+}
+[data-theme="dark"] .diagram-info-panel { background: rgba(184, 144, 47, 0.10); }
+.diagram-info-panel strong { color: var(--brass); font-style: normal; }
+.diagram-info-panel.placeholder {
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+}
+.diagram-info-panel .diagram-info-label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brass);
+  margin-bottom: 4px;
+}
+
+@media (max-width: 600px) {
+  .diagram-interactive { padding: 14px; }
+  .diagram-title { font-size: 14px; }
+  .diagram-info-panel { font-size: 13px; padding: 12px 14px; }
+}
+
 /* ============ MINI-CHECKS (skim-pause sub-questions inside long modules) ============ */
 .mini-check {
   background: var(--parchment-warm);
@@ -5565,6 +5696,63 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <div class="quiz-feedback"></div>
   </div>
 
+  <div class="card">
+    <h3>📑 Slide gallery — the lecturer&rsquo;s exact figures</h3>
+    <p style="font-size: 13px; color: var(--ink-soft); font-style: italic;">Pulled directly from the Module II PDF. These are the actual diagrams Tolu Ajayi shows in class — exam questions are commonly built directly from these.</p>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 9 · Air Pollution &amp; its Effects</span>
+      <img src="images/m2-smog-09.jpg" alt="Photochemical smog formation cycle" />
+      <div class="slide-fig-caption">Photochemical smog cycle — NO₂ + sunlight + HCs → O₃, PAN, aldehydes. Memorise the chain.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 18 · Air Pollution &amp; its Effects</span>
+      <img src="images/m2-deposition-18.jpg" alt="Particle deposition vs aerodynamic diameter" />
+      <div class="slide-fig-caption">Site of particle deposition vs aerodynamic diameter — minimum deposition around 0.5 μm; PM₂.₅ penetrates deep into alveoli.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 22 · Air Pollution &amp; its Effects</span>
+      <img src="images/m2-worldmap-22.jpg" alt="PM2.5 around the world 2022" />
+      <div class="slide-fig-caption">Global PM₂.₅ map (2022). Lagos 36.1, Cairo 47.4, Mumbai 46.7, Dubai 43.7 vs WHO 2021 guideline 5 μg/m³.</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slides 40–41</span>
+        <img src="images/m2-catalytic-40.jpg" alt="3-way catalytic converter system view" />
+        <div class="slide-fig-caption">3-way catalytic converter — system view.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 41 · cutaway</span>
+        <img src="images/m2-catalytic-41.jpg" alt="3-way catalytic converter substrate cutaway" />
+        <div class="slide-fig-caption">Cutaway showing Pt/Rh/Pd honeycomb. Cuts CO 80%, HC 90%, NO<sub>x</sub> &rarr; N₂.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 44 · case study</span>
+      <img src="images/m2-london1952-44.jpg" alt="London 1952 pollution episode" />
+      <div class="slide-fig-caption">London December 1952 episode — daily deaths overlaid with SO₂ and smoke concentration. ~4,700 dead in 5 days. The wake-up call that triggered the UK Clean Air Act 1956.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 46 · mechanism</span>
+      <img src="images/m2-acidrain-46.jpg" alt="Acid rain formation flow" />
+      <div class="slide-fig-caption">How acid rain forms — SO₂ + NO<sub>x</sub> + photo-oxidation in clouds → H₂SO₄ + HNO₃ → wet &amp; dry deposition. Industry, transport, domestic, electricity are the four feeder sources.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 49 · mechanism</span>
+      <img src="images/m2-greenhouse-49.jpg" alt="The greenhouse effect" />
+      <div class="slide-fig-caption">The greenhouse effect — incoming solar radiation passes through; outgoing IR is absorbed and re-emitted by GHG molecules (CO₂, CH₄, N₂O, H₂O vapour, CFCs).</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 59 · atmosphere</span>
+      <img src="images/m2-atmosphere-59.jpg" alt="Layers of the atmosphere" />
+      <div class="slide-fig-caption">Atmospheric layers — troposphere (0–12 km, weather), stratosphere (12–50 km, ozone layer), mesosphere, thermosphere. Required for any ozone-depletion question.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 60 · ozone depletion</span>
+      <img src="images/m2-ozone-60.jpg" alt="Ozone depletion CFC cycle" />
+      <div class="slide-fig-caption">The 6-step CFC ozone-depletion cycle: CFCs released &rarr; rise to stratosphere &rarr; UV releases Cl &rarr; Cl destroys ozone (one Cl atom can destroy ~100,000 O₃) &rarr; more UV reaches earth &rarr; skin cancer + crop damage.</div>
+    </div>
+  </div>
+
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
 </section>
 
@@ -5716,6 +5904,32 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <button class="quiz-option" data-correct="true"><span class="quiz-option-letter">D</span>Petroleum</button>
     </div>
     <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="card">
+    <h3>📑 Slide gallery — fracking + nuclear from the PDF</h3>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 4 · hydraulic fracturing</span>
+        <img src="images/m3-fracking-04.jpg" alt="Hydraulic fracturing diagram" />
+        <div class="slide-fig-caption">Fracking: well drilled, water + sand + chemicals pumped at high pressure to fracture shale and release oil/gas.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 5 · shale-gas extraction</span>
+        <img src="images/m3-fracking-05.jpg" alt="Shale gas extraction infographic" />
+        <div class="slide-fig-caption">Step-by-step well anatomy showing horizontal drilling and fissure propagation through the shale.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 7 · the lecturer&rsquo;s &ldquo;Dangers of Fracking&rdquo;</span>
+      <img src="images/m3-fracking-dangers-07.jpg" alt="Dangers of fracking — 6-hazard infographic" />
+      <div class="slide-fig-caption">Six hazards: GHG emissions · wastewater management · water contamination · cement casing failures · underground migrations · earthquakes · frac-fluid leaks.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 10 · The nuclear fuel cycle</span>
+      <img src="images/m3-nuclear-10.jpg" alt="Nuclear fuel cycle flow diagram" />
+      <div class="slide-fig-caption">Uranium mines &rarr; U₃O₈ &rarr; UF₆ conversion &rarr; U-235 enrichment &rarr; UO₂ fuel fabrication &rarr; reactor &rarr; spent fuel &rarr; reprocessing OR permanent storage. Classic flow-Q exam material.</div>
+    </div>
   </div>
 
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
@@ -5897,6 +6111,74 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <li>If future projection is acceptable → <strong>stop</strong>. Otherwise → compute future controls, enforce, loop.</li>
     </ol>
     <p style="font-style: italic; color: var(--ink-soft); margin-top: 10px;">The point: protecting the environment through legislation is a <strong>continuous process</strong>, not a single act that gets passed and forgotten.</p>
+  </div>
+
+  <div class="diagram-interactive" id="dia-protect-loop">
+    <div class="diagram-title">🔄 Continuous-Protection Legislation Loop</div>
+    <div class="diagram-sub">The lecturer&rsquo;s signature flowchart — practically guaranteed exam content. Tap any box to learn its role in the cycle.</div>
+    <svg viewBox="0 0 760 460" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Continuous protection legislation flowchart">
+      <g class="diagram-hot" data-hot="start" data-label="START" data-info="The cycle begins with <strong>regulatory monitoring</strong>. Air quality stations across cities sample CO, SO₂, NO₂, O₃, PM₂.₅, PM₁₀, Pb continuously. In Nigeria, this is NESREA&rsquo;s job under the Federal Ministry of Environment.">
+        <ellipse cx="380" cy="40" rx="60" ry="22" fill="rgba(45,88,71,0.30)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="380" y="45" font-size="14" text-anchor="middle" font-weight="700" font-family="DM Sans">START</text>
+      </g>
+      <line x1="380" y1="62" x2="380" y2="92" stroke="#222" stroke-width="2"/>
+      <polygon points="380,98 374,88 386,88" fill="#222"/>
+      <g class="diagram-hot" data-hot="measure" data-label="1. Measure ambient air quality" data-info="Continuous monitoring stations sample each criteria pollutant. Data is then compared against the relevant standards — <strong>WHO Air Quality Guidelines</strong> (2005 or stricter 2021), <strong>US NAAQS</strong>, or national equivalents like Nigeria&rsquo;s National Environmental (Air Quality Control) Regulations.">
+        <rect x="280" y="98" width="200" height="50" rx="6" fill="rgba(184,144,47,0.18)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="380" y="120" font-size="12" text-anchor="middle" font-weight="700" font-family="DM Sans">Measure ambient air</text>
+        <text x="380" y="138" font-size="12" text-anchor="middle" font-family="DM Sans">against standards</text>
+      </g>
+      <line x1="380" y1="148" x2="380" y2="170" stroke="#222" stroke-width="2"/>
+      <polygon points="380,176 374,166 386,166" fill="#222"/>
+      <g class="diagram-hot" data-hot="dec1" data-label="Decision: meets current standards?" data-info="Compares the measurement against the legal limit. <strong>YES</strong> → move on to predicting future quality. <strong>NO</strong> → trigger enforcement: compute the reduction needed and force polluters to meet it.">
+        <polygon points="380,176 470,222 380,268 290,222" fill="rgba(161,77,42,0.20)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="380" y="218" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Meets standards?</text>
+      </g>
+      <line x1="290" y1="222" x2="180" y2="222" stroke="#222" stroke-width="2"/>
+      <polygon points="174,222 184,216 184,228" fill="#222"/>
+      <text x="245" y="215" font-size="11" font-family="DM Sans" font-weight="700" fill="#a14d2a">NO</text>
+      <g class="diagram-hot" data-hot="compute" data-label="Compute & enforce reductions" data-info="If air quality fails the standard, regulators must quantify exactly how much each emission source needs to cut, then enforce via <strong>BACT/MACT</strong> (US), <strong>BATNEEC/BPM</strong> (UK), or <strong>BAPPT</strong> (Nigeria) technology mandates. Permits get tightened. Fines for non-compliance. Then the loop returns to measure again.">
+        <rect x="40" y="195" width="140" height="54" rx="6" fill="rgba(161,77,42,0.18)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="110" y="217" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Compute &amp;</text>
+        <text x="110" y="234" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">enforce reductions</text>
+      </g>
+      <path d="M 110 195 L 110 122 L 280 122" fill="none" stroke="#222" stroke-width="2"/>
+      <polygon points="280,122 270,116 270,128" fill="#222"/>
+      <text x="115" y="160" font-size="10" font-family="DM Sans" fill="#a14d2a" font-style="italic">re-measure ↑</text>
+      <line x1="380" y1="268" x2="380" y2="290" stroke="#222" stroke-width="2"/>
+      <polygon points="380,296 374,286 386,286" fill="#222"/>
+      <text x="390" y="284" font-size="11" font-family="DM Sans" font-weight="700" fill="#2d5847">YES</text>
+      <g class="diagram-hot" data-hot="predict" data-label="2. Predict future quality" data-info="Even if today&rsquo;s air passes — will tomorrow&rsquo;s? Projections account for <strong>economic growth, population growth, planned new industrial facilities, vehicle fleet expansion</strong>. The point: don&rsquo;t wait until limits are exceeded to act. Predictive modelling (Gaussian plume + emission inventories) drives long-term policy.">
+        <rect x="270" y="296" width="220" height="50" rx="6" fill="rgba(184,144,47,0.18)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="380" y="318" font-size="12" text-anchor="middle" font-weight="700" font-family="DM Sans">Predict future air quality</text>
+        <text x="380" y="336" font-size="11" text-anchor="middle" font-family="DM Sans" fill="#555">(account for growth)</text>
+      </g>
+      <line x1="380" y1="346" x2="380" y2="368" stroke="#222" stroke-width="2"/>
+      <polygon points="380,374 374,364 386,364" fill="#222"/>
+      <g class="diagram-hot" data-hot="dec2" data-label="Decision: future acceptable?" data-info="Will the air still meet standards in 5–10 years given projected growth? <strong>NO</strong> → compute and enforce future controls now (preventive). <strong>YES</strong> → the system is stable, can stop. But monitoring continues — the loop never truly ends.">
+        <polygon points="380,374 470,420 380,466 290,420" fill="rgba(161,77,42,0.20)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="380" y="416" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Future</text>
+        <text x="380" y="430" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">acceptable?</text>
+      </g>
+      <line x1="290" y1="420" x2="200" y2="420" stroke="#222" stroke-width="2"/>
+      <polygon points="194,420 204,414 204,426" fill="#222"/>
+      <text x="245" y="413" font-size="11" font-family="DM Sans" font-weight="700" fill="#a14d2a">NO</text>
+      <g class="diagram-hot" data-hot="future-controls" data-label="Compute future controls" data-info="Future-proof the system. Add stricter standards (UK Climate Change Act), Best Available Technology mandates for NEW plants (US NSPS), Prevention of Significant Deterioration zones. Then the loop runs again — predict-with-new-controls → reassess.">
+        <rect x="60" y="393" width="140" height="54" rx="6" fill="rgba(161,77,42,0.18)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="130" y="415" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Compute future</text>
+        <text x="130" y="432" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">controls</text>
+      </g>
+      <path d="M 130 393 L 130 320 L 270 320" fill="none" stroke="#222" stroke-width="2"/>
+      <polygon points="270,320 260,314 260,326" fill="#222"/>
+      <line x1="470" y1="420" x2="570" y2="420" stroke="#222" stroke-width="2"/>
+      <polygon points="576,420 566,414 566,426" fill="#222"/>
+      <text x="520" y="413" font-size="11" font-family="DM Sans" font-weight="700" fill="#2d5847">YES</text>
+      <g class="diagram-hot" data-hot="stop" data-label="STOP (but keep monitoring)" data-info="The cycle reaches a 'stop' state when both current AND projected future air quality meet standards. But the monitoring step never actually stops — pollutants keep being emitted, populations keep growing, new chemicals keep being invented. Hence the lecturer&rsquo;s point: <strong>protecting the environment is a CONTINUOUS process</strong>, not a one-off act of legislation.">
+        <ellipse cx="640" cy="420" rx="60" ry="22" fill="rgba(45,88,71,0.30)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="640" y="425" font-size="14" text-anchor="middle" font-weight="700" font-family="DM Sans">STOP</text>
+      </g>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap any node above. The two NO branches loop back — that&rsquo;s why this is &ldquo;continuous&rdquo;.</div>
   </div>
 
   <div class="flashcard-region" data-flashcards='[
@@ -6084,6 +6366,128 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <p style="margin-top: 14px; font-size: 13px; font-style: italic; color: var(--ink-soft);">Key design tools: <strong>Johnstone equation</strong> for venturi efficiency, <strong>Lapple cut-diameter d<sub>50</sub></strong> for cyclones, drift velocity for ESPs, air-to-cloth ratio for baghouses.</p>
   </div>
 
+  <div class="diagram-interactive" id="dia-cyclone">
+    <div class="diagram-title">🌀 Cyclone Separator — Internal Anatomy</div>
+    <div class="diagram-sub">Tap each part to learn how the swirl actually works. Standard dimensions are normalised to body diameter <strong>D</strong> (Stairmand/Lapple convention).</div>
+    <svg viewBox="0 0 560 480" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Cyclone separator cross-section">
+      <g class="diagram-hot" data-hot="inlet" data-label="Tangential gas inlet" data-info="Dust-laden gas enters <strong>horizontally on the side</strong>, which forces it into a downward spiral inside the body. Inlet velocity typically <strong>15–25 m/s</strong> — too low and centrifugal force is too weak, too high and ΔP soars. Standard inlet height × width: <strong>0.5D × 0.2D</strong> (Stairmand).">
+        <rect x="370" y="80" width="170" height="40" fill="rgba(161,77,42,0.22)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <polygon points="540,100 555,100 547,86" fill="#222"/>
+        <text x="530" y="75" font-size="10" text-anchor="end" font-family="DM Sans" font-weight="700">DIRTY GAS IN →</text>
+      </g>
+      <g class="diagram-hot" data-hot="vortex-finder" data-label="Vortex finder (clean gas exit)" data-info="Central pipe extending DOWN into the body. The <strong>inner vortex (rising)</strong> exits through this tube while the <strong>outer vortex (descending)</strong> continues around it. Vortex finder diameter is typically <strong>0.5D</strong>. Its depth into the body controls 'short-circuiting' — gas that bypasses the swirl and escapes uncleaned.">
+        <rect x="220" y="0" width="80" height="40" fill="rgba(45,88,71,0.30)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <polygon points="245,8 275,8 260,-4" fill="#222"/>
+        <text x="260" y="28" font-size="11" text-anchor="middle" fill="white" font-weight="700">↑ CLEAN GAS</text>
+        <rect x="220" y="40" width="80" height="120" fill="rgba(45,88,71,0.10)" stroke="#222" stroke-width="1.5" stroke-dasharray="3 3" data-stroke="1"/>
+        <text x="260" y="105" font-size="9" text-anchor="middle" fill="#2d5847" font-style="italic">vortex finder</text>
+        <text x="260" y="118" font-size="9" text-anchor="middle" fill="#2d5847" font-style="italic">~0.5D</text>
+      </g>
+      <g class="diagram-hot" data-hot="body" data-label="Cylindrical body (outer vortex)" data-info="The <strong>outer vortex spirals DOWNWARD</strong> in this section. Particles heavier than gas cannot follow the streamlines around tight curves — centrifugal force flings them outward to the wall, where they slide down to the dust hopper. Body height typically <strong>1.5–2D</strong>. The <strong>number of equivalent turns Nₑ</strong> in this zone is what determines the cyclone's cut diameter d₅₀ via the Lapple equation.">
+        <rect x="120" y="60" width="280" height="180" fill="rgba(184,144,47,0.08)" stroke="#222" stroke-width="2.5" data-stroke="1"/>
+        <text x="100" y="155" font-size="11" font-family="DM Sans" font-weight="700" fill="#222" transform="rotate(-90 100 155)" text-anchor="middle">D</text>
+        <line x1="115" y1="62" x2="115" y2="240" stroke="#222" stroke-width="1"/>
+        <line x1="108" y1="62" x2="122" y2="62" stroke="#222" stroke-width="1"/>
+        <line x1="108" y1="240" x2="122" y2="240" stroke="#222" stroke-width="1"/>
+      </g>
+      <g class="diagram-hot" data-hot="cone" data-label="Conical section (vortex acceleration)" data-info="The cone <strong>accelerates the spinning gas</strong> as it narrows (vortex stretching). The inner vortex REVERSES direction here and starts moving up toward the vortex finder. Cone height typically <strong>2.5D</strong>. The narrowing forces particles closer to the central axis where they fall into the dipleg.">
+        <path d="M 120 240 L 200 380 L 320 380 L 400 240 Z" fill="rgba(184,144,47,0.08)" stroke="#222" stroke-width="2.5" data-stroke="1"/>
+      </g>
+      <g class="diagram-hot" data-hot="dipleg" data-label="Dust outlet (dipleg)" data-info="Collected solids fall out at the bottom. Must have an <strong>airlock / rotary valve</strong> to prevent ambient air sucking back in and re-entraining the captured dust. Dust outlet diameter typically <strong>0.25D</strong> — small enough to maintain the vortex, big enough for solids to fall freely.">
+        <rect x="200" y="380" width="120" height="60" fill="rgba(90,60,40,0.28)" stroke="#222" stroke-width="2.5" data-stroke="1"/>
+        <text x="260" y="425" font-size="11" text-anchor="middle" fill="#222" font-weight="700">↓ DUST OUT</text>
+      </g>
+      <path d="M 350 130 Q 380 160 360 190 Q 320 220 360 250 Q 320 290 290 320" fill="none" stroke="#a14d2a" stroke-width="2.5" opacity="0.65" stroke-dasharray="2 4"/>
+      <polygon points="290,320 286,310 296,310" fill="#a14d2a" opacity="0.7"/>
+      <path d="M 260 320 Q 260 220 260 140 L 260 60" fill="none" stroke="#2d5847" stroke-width="2.5" opacity="0.7" stroke-dasharray="2 4"/>
+      <polygon points="260,60 256,72 264,72" fill="#2d5847"/>
+      <text x="35" y="185" font-size="11" fill="#a14d2a" font-style="italic" font-family="Fraunces">outer vortex ↓</text>
+      <text x="35" y="200" font-size="10" fill="#a14d2a" font-style="italic" font-family="Fraunces">(dirty gas)</text>
+      <text x="35" y="290" font-size="11" fill="#2d5847" font-style="italic" font-family="Fraunces">inner vortex ↑</text>
+      <text x="35" y="305" font-size="10" fill="#2d5847" font-style="italic" font-family="Fraunces">(clean gas)</text>
+      <text x="280" y="467" font-size="11" fill="#888" text-anchor="middle" font-style="italic" font-family="Fraunces">↑ Tap each part to learn how it works</text>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap any coloured part above to see what it does.</div>
+  </div>
+
+  <div class="diagram-interactive" id="dia-esp">
+    <div class="diagram-title">⚡ Electrostatic Precipitator (ESP) — Plate-and-Wire Cross-Section</div>
+    <div class="diagram-sub">High voltage (typically &gt;50 kV) on the discharge wires creates a corona that charges particles, which migrate to grounded collection plates. Standard for huge gas flows — coal-fired power plants, cement kilns.</div>
+    <svg viewBox="0 0 700 380" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Electrostatic precipitator cross-section">
+      <rect x="40" y="40" width="620" height="240" fill="rgba(184,144,47,0.04)" stroke="#222" stroke-width="2"/>
+      <g class="diagram-hot" data-hot="inlet" data-label="Gas inlet + distribution screens" data-info="Dirty gas enters at the front. <strong>Distribution screens</strong> (perforated baffles) spread the flow evenly across all plates — uneven flow means some plates get overwhelmed while others see no gas. Inlet velocity is kept low (~1.5 m/s) so particles have residence time to migrate sideways to the plates.">
+        <rect x="0" y="100" width="40" height="120" fill="rgba(161,77,42,0.20)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <polygon points="42,160 60,160 52,148" fill="#222"/>
+        <text x="20" y="95" font-size="10" text-anchor="middle" font-family="DM Sans" font-weight="700">DIRTY</text>
+        <text x="20" y="232" font-size="10" text-anchor="middle" font-family="DM Sans" font-weight="700">GAS IN</text>
+        <line x1="40" y1="100" x2="40" y2="220" stroke="#222" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <line x1="44" y1="105" x2="44" y2="215" stroke="#222" stroke-width="0.5" stroke-dasharray="2 2"/>
+      </g>
+      <g class="diagram-hot" data-hot="plates" data-label="Grounded collecting plates (+)" data-info="<strong>Vertical metal plates</strong> connected to ground (effectively positive relative to the negative wires). Charged particles drift across the gas flow and stick to these plates. Plate spacing typically <strong>150–300 mm</strong>. Total plate area drives efficiency (Deutsch-Anderson: η = 1 − exp(−Av/Q)).">
+        <rect x="80" y="60" width="6" height="200" fill="#888" data-stroke="1"/>
+        <rect x="220" y="60" width="6" height="200" fill="#888" data-stroke="1"/>
+        <rect x="360" y="60" width="6" height="200" fill="#888" data-stroke="1"/>
+        <rect x="500" y="60" width="6" height="200" fill="#888" data-stroke="1"/>
+        <line x1="83" y1="40" x2="83" y2="58" stroke="#444" stroke-width="2"/>
+        <line x1="83" y1="40" x2="103" y2="40" stroke="#444" stroke-width="2"/>
+        <text x="115" y="45" font-size="10" fill="#2d5847" font-family="DM Sans">⏚ ground</text>
+        <text x="160" y="55" font-size="9" text-anchor="middle" font-family="DM Sans" fill="#444">+ plate</text>
+      </g>
+      <g class="diagram-hot" data-hot="wires" data-label="Discharge electrodes / corona wires (−)" data-info="<strong>High-voltage negative wires</strong> stretched vertically between every pair of plates, at <strong>40–75 kV</strong>. The intense electric field at the wire's small radius ionises the surrounding gas — that purple-blue glow is the <strong>corona discharge</strong>. The ionised gas molecules then attach electrons to passing particles, charging them.">
+        <line x1="150" y1="60" x2="150" y2="260" stroke="#5a8c3a" stroke-width="2" data-stroke="1"/>
+        <circle cx="150" cy="100" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1" data-stroke="1"/>
+        <circle cx="150" cy="160" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1" data-stroke="1"/>
+        <circle cx="150" cy="220" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1" data-stroke="1"/>
+        <line x1="290" y1="60" x2="290" y2="260" stroke="#5a8c3a" stroke-width="2" data-stroke="1"/>
+        <circle cx="290" cy="100" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <circle cx="290" cy="160" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <circle cx="290" cy="220" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <line x1="430" y1="60" x2="430" y2="260" stroke="#5a8c3a" stroke-width="2" data-stroke="1"/>
+        <circle cx="430" cy="100" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <circle cx="430" cy="160" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <circle cx="430" cy="220" r="6" fill="rgba(90,140,58,0.30)" stroke="#5a8c3a" stroke-width="1"/>
+        <line x1="150" y1="30" x2="430" y2="30" stroke="#a14d2a" stroke-width="2"/>
+        <line x1="150" y1="30" x2="150" y2="58" stroke="#a14d2a" stroke-width="2"/>
+        <line x1="290" y1="30" x2="290" y2="58" stroke="#a14d2a" stroke-width="2"/>
+        <line x1="430" y1="30" x2="430" y2="58" stroke="#a14d2a" stroke-width="2"/>
+        <rect x="440" y="20" width="80" height="20" fill="#a14d2a" rx="3"/>
+        <text x="480" y="34" font-size="10" text-anchor="middle" fill="white" font-family="DM Sans" font-weight="700">HV: −60 kV</text>
+      </g>
+      <g class="diagram-hot" data-hot="particles" data-label="Charged-particle migration" data-info="Particles passing between the plates pick up <strong>negative charge</strong> from the corona. The electric field then drives them sideways at the <strong>drift (migration) velocity v</strong> — typical 0.05–0.15 m/s. Smaller particles drift slower, so very fine PM is the design limit. The Deutsch-Anderson equation η = 1 − exp(−Av/Q) ties efficiency to plate area A, drift v, and gas flow Q.">
+        <circle cx="170" cy="120" r="3.5" fill="#5a4a3a"/><polygon points="170,123 175,135 165,135" fill="#5a4a3a" opacity="0.5"/>
+        <circle cx="210" cy="180" r="3.5" fill="#5a4a3a"/><polygon points="210,183 215,195 205,195" fill="#5a4a3a" opacity="0.5"/>
+        <circle cx="260" cy="100" r="3.5" fill="#5a4a3a"/><polygon points="260,103 265,115 255,115" fill="#5a4a3a" opacity="0.5"/>
+        <circle cx="320" cy="200" r="3.5" fill="#5a4a3a"/><polygon points="320,203 325,215 315,215" fill="#5a4a3a" opacity="0.5"/>
+        <circle cx="380" cy="140" r="3.5" fill="#5a4a3a"/><polygon points="380,143 385,155 375,155" fill="#5a4a3a" opacity="0.5"/>
+        <circle cx="460" cy="170" r="3.5" fill="#5a4a3a"/><polygon points="460,173 465,185 455,185" fill="#5a4a3a" opacity="0.5"/>
+        <text x="200" y="245" font-size="9" font-family="DM Sans" fill="#a14d2a" font-style="italic">→ migrate toward plates →</text>
+      </g>
+      <g class="diagram-hot" data-hot="rapping" data-label="Rapping mechanism" data-info="Periodically (every few minutes), a <strong>mechanical hammer</strong> on top of each plate row strikes it, dislodging the collected dust cake. The dust falls down into the hoppers below. Without rapping, the cake builds up, insulates the plate (raising resistivity), and shorts out the corona. Modern ESPs use timed automatic rapping based on opacity sensors.">
+        <rect x="80" y="10" width="6" height="20" fill="#666"/>
+        <rect x="220" y="10" width="6" height="20" fill="#666"/>
+        <rect x="360" y="10" width="6" height="20" fill="#666"/>
+        <rect x="500" y="10" width="6" height="20" fill="#666"/>
+        <circle cx="83" cy="10" r="6" fill="#444"/>
+        <circle cx="223" cy="10" r="6" fill="#444"/>
+        <circle cx="363" cy="10" r="6" fill="#444"/>
+        <circle cx="503" cy="10" r="6" fill="#444"/>
+        <text x="540" y="14" font-size="10" font-family="DM Sans" fill="#444" font-style="italic">⚒ rappers</text>
+      </g>
+      <g class="diagram-hot" data-hot="hopper" data-label="Dust collection hopper" data-info="<strong>Pyramidal hopper</strong> at the bottom collects rapped-down dust. Continuously emptied via a screw conveyor or rotary airlock (must seal against air ingress — otherwise turbulence re-entrains the dust). The collected fly ash from coal plants is often sold for cement / concrete additives.">
+        <polygon points="40,280 660,280 540,360 160,360" fill="rgba(90,60,40,0.25)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <text x="350" y="335" font-size="11" text-anchor="middle" fill="#222" font-weight="700" font-family="DM Sans">↓ COLLECTED DUST →</text>
+      </g>
+      <g class="diagram-hot" data-hot="outlet" data-label="Clean gas outlet" data-info="Cleaned gas exits the rear, ready for the stack. Typical ESP efficiency: <strong>95–99.5%</strong>, often 99.9% on modern designs. ESP wins for huge gas flows because pressure drop is tiny (&lt;125 Pa) compared to fabric filters (~1000 Pa) — for a 600 MW power plant, that ΔP saving is worth millions in fan-power costs.">
+        <rect x="660" y="100" width="40" height="120" fill="rgba(45,88,71,0.25)" stroke="#222" stroke-width="2" data-stroke="1"/>
+        <polygon points="640,160 658,160 650,148" fill="#222"/>
+        <text x="680" y="95" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#2d5847" font-weight="700">CLEAN</text>
+        <text x="680" y="232" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#2d5847" font-weight="700">→ STACK</text>
+      </g>
+      <text x="350" y="375" font-size="11" fill="#888" text-anchor="middle" font-style="italic" font-family="Fraunces">↑ Tap any part to learn how it works</text>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap any coloured part above to see what it does.</div>
+  </div>
+
   <div class="mini-check" data-check-id="m5-device">
     <span class="mini-check-eyebrow">✋ Halfway through · skim-check</span>
     <div class="mini-check-q">A coal plant needs to capture sub-micron fly ash from a huge gas flow at very low pressure drop. Which device?</div>
@@ -6191,6 +6595,50 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <div class="quiz-feedback"></div>
   </div>
 
+  <div class="card">
+    <h3>📑 Slide gallery — Module V&rsquo;s exam-critical figures</h3>
+    <p style="font-size: 13px; color: var(--ink-soft); font-style: italic;">Pulled from the lecturer&rsquo;s 4-part PDF set. These are the diagrams you&rsquo;ll be expected to identify, label, or reproduce on the exam.</p>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Part 1 · Slide 15 · FGD</span>
+        <img src="images/m5-fgd-15.jpg" alt="Flue gas desulfurization limestone wet scrubber" />
+        <div class="slide-fig-caption">Limestone wet scrubber for SO₂ — the sole SO₂ control schematic in the course. Spray banks, mist eliminator, slurry recirculation, gypsum oxidation loop.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Part 3 · Slide 18 · cyclone dims</span>
+        <img src="images/m5-cyclone-dims-18.jpg" alt="Standard cyclone design dimensions" />
+        <div class="slide-fig-caption">Standard cyclone dimensions normalised to body diameter D — Stairmand high-efficiency / Lapple conventional / Swift high-throughput.</div>
+      </div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Part 3 · Slide 25 · ESP detail</span>
+        <img src="images/m5-esp-detail-25.jpg" alt="Electrostatic precipitator detail layout" />
+        <div class="slide-fig-caption">Industrial ESP cutaway — discharge wires, collecting plates, rappers, gas distribution screens, hoppers, power supply.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Part 3 · Slide 38 · pulse-jet baghouse</span>
+        <img src="images/m5-pulse-jet-38.jpg" alt="Pulse jet baghouse" />
+        <div class="slide-fig-caption">Pulse-jet baghouse: solenoid valves fire compressed air via venturis to dislodge dust cake from bag exterior.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Part 4 · Slide 6 · atmospheric stability</span>
+      <img src="images/m5-stability-06.jpg" alt="Atmospheric stability profiles" />
+      <div class="slide-fig-caption">Four atmospheric stability cases — Unstable / Neutral / Weakly stable / Strongly stable. Each shows T vs height with the dry adiabatic lapse rate (dashed) vs environmental lapse rate (solid). The basis for everything in Part 4.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Part 4 · Slide 19 · Gaussian plume</span>
+      <img src="images/m5-gaussian-19.jpg" alt="3D Gaussian plume dispersion" />
+      <div class="slide-fig-caption">The 3D Gaussian plume — effective stack height H, mean wind u̅, σ<sub>y</sub> (horizontal) and σ<sub>z</sub> (vertical) standard deviations, ground-reflection. Foundation of every dispersion calculation.</div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Part 4 · Slide 26 · Pasquill-Gifford curves</span>
+      <img src="images/m5-sigma-26.jpg" alt="Pasquill-Gifford sigma curves" />
+      <div class="slide-fig-caption">σ<sub>y</sub> and σ<sub>z</sub> vs downwind distance for stability classes A–F. Read these off when solving any Gaussian plume problem.</div>
+    </div>
+  </div>
+
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
 </section>
 
@@ -6272,6 +6720,52 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <p>BOD kinetics is first-order: <code>BOD<sub>t</sub> = BOD<sub>u</sub> · (1 &minus; e<sup>&minus;kt</sup>)</code>, with typical <strong>k ≈ 0.23 / day</strong> at 20 °C. So <strong>BOD₅ ≈ 68% of BOD<sub>u</sub></strong>.</p>
   </div>
 
+  <div class="diagram-interactive" id="dia-bod-curve">
+    <div class="diagram-title">📉 BOD Curve — CBOD (carbonaceous) + NBOD (nitrification)</div>
+    <div class="diagram-sub">First-order kinetics: BOD<sub>t</sub> = BOD<sub>u</sub>(1 − e<sup>−kt</sup>). At k = 0.23/day, BOD₅ ≈ 68% of BOD<sub>u</sub>. Around day 10 nitrifiers take over and a second-stage demand kicks in. Tap any region.</div>
+    <svg viewBox="0 0 700 400" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="BOD curve CBOD and NBOD over time">
+      <line x1="70" y1="340" x2="660" y2="340" stroke="#222" stroke-width="2"/>
+      <line x1="70" y1="40" x2="70" y2="340" stroke="#222" stroke-width="2"/>
+      <text x="30" y="46" font-size="11" font-family="DM Sans" fill="#222">BOD<tspan font-size="9">total</tspan></text>
+      <text x="14" y="190" font-size="11" font-family="DM Sans" fill="#222" font-style="italic">BOD (mg/L)</text>
+      <text x="14" y="204" font-size="11" font-family="DM Sans" fill="#222" font-style="italic">y<tspan font-size="9">t</tspan></text>
+      <text x="660" y="362" font-size="11" font-family="DM Sans" fill="#444" font-style="italic" text-anchor="end">→ time (days)</text>
+      <text x="74" y="356" font-size="10" font-family="DM Sans" fill="#444">0</text>
+      <text x="166" y="356" font-size="10" font-family="DM Sans" fill="#444">5</text>
+      <text x="262" y="356" font-size="10" font-family="DM Sans" fill="#444">10</text>
+      <text x="354" y="356" font-size="10" font-family="DM Sans" fill="#444">15</text>
+      <text x="446" y="356" font-size="10" font-family="DM Sans" fill="#444">20</text>
+      <text x="538" y="356" font-size="10" font-family="DM Sans" fill="#444">25</text>
+      <text x="630" y="356" font-size="10" font-family="DM Sans" fill="#444">30</text>
+      <line x1="170" y1="40" x2="170" y2="340" stroke="#b8902f" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.7"/>
+      <text x="175" y="55" font-size="11" font-family="DM Sans" fill="#b8902f" font-weight="700">BOD₅</text>
+      <text x="175" y="69" font-size="9" font-family="DM Sans" fill="#b8902f" font-style="italic">≈ 68% of BOD<tspan font-size="7">u</tspan></text>
+      <g class="diagram-hot" data-hot="cbod" data-label="CBOD — Carbonaceous Oxygen Demand (first stage)" data-info="Aerobic microbes oxidise <strong>organic carbon</strong> in the wastewater to CO₂ + H₂O. Follows first-order kinetics: <strong>BOD<sub>t</sub> = BOD<sub>u</sub>(1 − e<sup>−kt</sup>)</strong>. At k ≈ 0.23/day and 20 °C: <strong>BOD₅ captures only ~68%</strong> of complete carbonaceous oxidation, BOD₁₀ ~90%, BOD₂₀ ~99%. Plateau at BOD<sub>u</sub> ≈ 0.92 COD for biodegradable waste.">
+        <path d="M 70 340 Q 100 290 130 240 Q 160 200 200 170 Q 240 150 290 140 Q 360 135 460 132 L 540 132 L 660 132" fill="none" stroke="#a14d2a" stroke-width="3" data-stroke="1"/>
+        <circle cx="170" cy="178" r="5" fill="#b8902f" stroke="#5a4a3a" stroke-width="1.5"/>
+        <text x="478" y="125" font-size="11" font-family="DM Sans" fill="#a14d2a" font-weight="700">CBOD plateau</text>
+        <text x="478" y="139" font-size="9" font-family="DM Sans" fill="#a14d2a" font-style="italic">(BOD<sub>u</sub> · carbonaceous)</text>
+      </g>
+      <g class="diagram-hot" data-hot="nbod" data-label="NBOD — Nitrogenous Oxygen Demand (second stage)" data-info="<strong>Kicks in around day 8–10</strong>, once nitrifying bacteria multiply enough to be significant. They oxidise nitrogen released from organic matter: <strong>NH₃ → NO₂⁻ → NO₃⁻</strong>. Adds a second wave of oxygen demand on top of CBOD. In the standard BOD₅ test this is normally suppressed (added inhibitor) because we want carbon-only.">
+        <path d="M 70 340 L 260 340 Q 300 320 360 280 Q 420 240 500 220 Q 570 212 660 208" fill="none" stroke="#2d5847" stroke-width="3" stroke-dasharray="6 3" data-stroke="1"/>
+        <text x="500" y="200" font-size="11" font-family="DM Sans" fill="#2d5847" font-weight="700">NBOD</text>
+        <text x="500" y="214" font-size="9" font-family="DM Sans" fill="#2d5847" font-style="italic">(nitrification)</text>
+      </g>
+      <g class="diagram-hot" data-hot="combined" data-label="Combined demand (total)" data-info="<strong>Total BOD = CBOD + NBOD</strong>. This is what you'd actually measure if you ran the test for 30 days without nitrification inhibitor. The plateau is the <strong>ultimate BOD (BOD<sub>u</sub>)</strong> — full biodegradable load. Note: a 30-day BOD test with nitrification inhibitor measures BOD<sub>u,carbonaceous</sub>.">
+        <path d="M 70 340 Q 100 280 130 220 Q 160 175 200 140 Q 240 110 280 95 Q 320 80 360 65 Q 420 55 500 50 L 660 50" fill="none" stroke="#5a4a3a" stroke-width="3" data-stroke="1"/>
+        <text x="500" y="42" font-size="11" font-family="DM Sans" fill="#5a4a3a" font-weight="700">Total BOD = CBOD + NBOD</text>
+      </g>
+      <g class="diagram-hot" data-hot="bod5" data-label="BOD₅ — the 5-day standard test" data-info="<strong>Standard BOD test: 5 days at 20 °C</strong>. By design captures only ~68% of full carbonaceous BOD — chosen historically because the Thames takes ~5 days to reach the open sea. Long enough to get useful data, short enough to be operationally practical. <strong>BOD₅ = BOD<sub>u</sub>(1 − e<sup>−0.23×5</sup>) = BOD<sub>u</sub> × 0.683</strong>.">
+        <rect x="120" y="50" width="100" height="280" fill="rgba(184,144,47,0.10)" data-stroke="1"/>
+      </g>
+      <g class="diagram-hot" data-hot="nitrification" data-label="Nitrification chain — N → NH₃ → NO₂⁻ → NO₃⁻" data-info="Why NBOD lags: <strong>two distinct bacteria</strong> needed. <strong>Nitrosomonas</strong> oxidises NH₃ → NO₂⁻ (consumes O₂). <strong>Nitrobacter</strong> oxidises NO₂⁻ → NO₃⁻ (more O₂). These nitrifiers grow much SLOWER than carbon-oxidising heterotrophs, hence the ~10-day delay before NBOD becomes significant.">
+        <rect x="280" y="372" width="380" height="22" fill="rgba(45,88,71,0.12)" stroke="#2d5847" stroke-width="1" rx="3" data-stroke="1"/>
+        <text x="470" y="388" font-size="11" font-family="DM Sans" text-anchor="middle" fill="#2d5847" font-weight="600">N → NH₃ → NO₂⁻ → NO₃⁻ &nbsp;·&nbsp; nitrification chain</text>
+      </g>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap a curve. The orange ring at day 5 is where the standard BOD₅ test reads — ~68% of the total carbonaceous demand.</div>
+  </div>
+
   <div class="mini-check" data-check-id="m6-cod">
     <span class="mini-check-eyebrow">✋ Quick check · sanity test</span>
     <div class="mini-check-q">For the SAME wastewater sample, which relation is ALWAYS true?</div>
@@ -6316,6 +6810,58 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <div class="lab-result"><div class="lab-result-label">BOD₅ (k=0.23/d)</div><div class="lab-result-value" id="bodLabResBOD5">—</div></div>
     </div>
     <div style="font-style: italic; color: var(--ink-soft); font-size: 13px; margin-top: 8px;">Lecturer&rsquo;s expected values with the default loads: <strong>TOC ≈ 168.5</strong>, <strong>COD ≈ 640</strong>, <strong>BOD₅ ≈ 297</strong> mg/L. Sulphide is inorganic — it adds to COD but NOT to TOC, and not to BOD.</div>
+  </div>
+
+  <div class="diagram-interactive" id="dia-train">
+    <div class="diagram-title">💧 Wastewater Treatment Train — Flow Diagram</div>
+    <div class="diagram-sub">Tap each stage to see what happens there and how much BOD/TSS it removes. Sludge generated by primary and secondary feeds a separate handling line.</div>
+    <svg viewBox="0 0 820 300" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Wastewater treatment train">
+      <text x="40" y="80" font-size="12" font-family="DM Sans" fill="#a14d2a" font-weight="700">INFLUENT</text>
+      <text x="40" y="100" font-size="10" font-family="DM Sans" fill="#444">BOD: 100%</text>
+      <text x="40" y="114" font-size="10" font-family="DM Sans" fill="#444">TSS: 100%</text>
+      <polygon points="115,95 145,95 145,88 162,98 145,108 145,102 115,102" fill="#a14d2a"/>
+      <g class="diagram-hot" data-hot="preliminary" data-label="Preliminary treatment" data-info="<strong>Physical removal of gross solids</strong>: bar screens for rags and plastics, grit chambers for sand, comminutors to grind down what gets through, equalization tanks to even out diurnal flow swings. Purpose: protect downstream pumps and pipes. <strong>No BOD/TSS reduction counted</strong> — this is housekeeping.">
+        <rect x="170" y="60" width="105" height="80" fill="rgba(184,144,47,0.18)" stroke="#222" stroke-width="2" rx="4" data-stroke="1"/>
+        <text x="222" y="88" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Preliminary</text>
+        <text x="222" y="106" font-size="9" text-anchor="middle" font-family="DM Sans" fill="#555">bar screens · grit</text>
+        <text x="222" y="125" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#a14d2a">no % removal</text>
+      </g>
+      <polygon points="275,95 305,95 305,88 322,98 305,108 305,102 275,102" fill="#a14d2a"/>
+      <g class="diagram-hot" data-hot="primary" data-label="Primary treatment (sedimentation)" data-info="<strong>Gravity sedimentation in a primary clarifier</strong>. Retention 2–6 hours, depth 2–4 m. Removes about <strong>30% of BOD and 60% of TSS</strong>. No biology, no chemistry — just letting heavy solids settle and floating scum get skimmed. The settled sludge is pumped out for sludge handling.">
+        <rect x="330" y="60" width="105" height="80" fill="rgba(45,88,71,0.18)" stroke="#222" stroke-width="2" rx="4" data-stroke="1"/>
+        <text x="382" y="88" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Primary</text>
+        <text x="382" y="106" font-size="9" text-anchor="middle" font-family="DM Sans" fill="#555">sedimentation</text>
+        <text x="382" y="125" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#2d5847" font-weight="600">−30% BOD · −60% TSS</text>
+      </g>
+      <polygon points="435,95 465,95 465,88 482,98 465,108 465,102 435,102" fill="#b8902f"/>
+      <g class="diagram-hot" data-hot="secondary" data-label="Secondary treatment (biological)" data-info="<strong>Biological treatment</strong> — aerobic microbes consume dissolved organics. Two common designs: <strong>activated sludge</strong> (aerated tank with returned biomass via RAS, F/M ratio 0.3 typical) or <strong>trickling filter</strong> (biofilm on rock/plastic media). Removes <strong>85–95% of BOD</strong> and most remaining TSS. Most environmental engineering focuses here.">
+        <rect x="490" y="60" width="105" height="80" fill="rgba(45,88,71,0.30)" stroke="#222" stroke-width="2" rx="4" data-stroke="1"/>
+        <text x="542" y="88" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Secondary</text>
+        <text x="542" y="106" font-size="9" text-anchor="middle" font-family="DM Sans" fill="#555">activated sludge</text>
+        <text x="542" y="125" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#2d5847" font-weight="600">−85 to −95% BOD</text>
+      </g>
+      <polygon points="595,95 625,95 625,88 642,98 625,108 625,102 595,102" fill="#5a8c3a"/>
+      <g class="diagram-hot" data-hot="tertiary" data-label="Tertiary treatment (polishing)" data-info="<strong>Polishing step</strong>: sand filtration to catch fine remaining solids, <strong>disinfection</strong> (chlorination, UV, or ozone) to kill pathogens, <strong>nutrient removal</strong> (nitrification/denitrification for N; chemical precipitation for P) to prevent eutrophication. The difference between effluent that can be safely discharged to a river vs one that still needs more processing.">
+        <rect x="650" y="60" width="105" height="80" fill="rgba(90,140,58,0.30)" stroke="#222" stroke-width="2" rx="4" data-stroke="1"/>
+        <text x="702" y="88" font-size="11" text-anchor="middle" font-weight="700" font-family="DM Sans">Tertiary</text>
+        <text x="702" y="106" font-size="9" text-anchor="middle" font-family="DM Sans" fill="#555">filter · UV · N + P</text>
+        <text x="702" y="125" font-size="10" text-anchor="middle" font-family="DM Sans" fill="#5a8c3a" font-weight="600">pathogens · nutrients</text>
+      </g>
+      <polygon points="755,95 785,95 785,88 800,98 785,108 785,102 755,102" fill="#5a8c3a"/>
+      <text x="775" y="80" font-size="11" font-family="DM Sans" fill="#2d5847" font-weight="700">CLEAN</text>
+      <text x="755" y="125" font-size="10" font-family="DM Sans" fill="#444">→ river</text>
+      <line x1="382" y1="140" x2="382" y2="195" stroke="#888" stroke-width="2"/>
+      <polygon points="382,195 376,185 388,185" fill="#888"/>
+      <line x1="542" y1="140" x2="542" y2="195" stroke="#888" stroke-width="2"/>
+      <polygon points="542,195 536,185 548,185" fill="#888"/>
+      <rect x="320" y="200" width="280" height="36" fill="rgba(70,40,30,0.18)" stroke="#666" stroke-width="1.5" rx="4"/>
+      <text x="460" y="222" font-size="10" text-anchor="middle" font-family="DM Sans" font-style="italic" fill="#666">→ sludge handling: digestion · dewatering · landfill or land application</text>
+      <g class="diagram-hot" data-hot="advanced" data-label="Advanced treatment (AOPs, MBR, wetlands)" data-info="For recalcitrant pollutants beyond what secondary + tertiary can handle: <strong>AOPs</strong> (Advanced Oxidation Processes — O₃/H₂O₂, UV/H₂O₂, photo-Fenton) generate hydroxyl radicals to destroy pharmaceuticals and refractory organics. <strong>MBR</strong> (Membrane Bioreactors) combine biological treatment with membrane filtration for ultra-clean effluent. <strong>Constructed wetlands</strong> as a low-energy polishing alternative. Used when discharge standards are extremely tight or for water reuse.">
+        <rect x="170" y="252" width="585" height="34" fill="rgba(184,144,47,0.10)" stroke="#888" stroke-width="1.5" stroke-dasharray="3 3" rx="4" data-stroke="1"/>
+        <text x="462" y="273" font-size="11" text-anchor="middle" font-family="DM Sans" font-style="italic" fill="#888">↳ Advanced (optional): MBR · AOPs · constructed wetlands &mdash; for pharma + trace organics</text>
+      </g>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap any stage above to see what happens at it.</div>
   </div>
 
   <div class="card">
@@ -6397,6 +6943,32 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <div class="quiz-feedback"></div>
   </div>
 
+  <div class="card">
+    <h3>📑 Slide gallery — Module VI</h3>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 24 · eutrophication</span>
+      <img src="images/m6-eutroph-24.jpg" alt="Eutrophication of a water body" />
+      <div class="slide-fig-caption">Eutrophication cascade — N + P inputs &rarr; algal bloom &rarr; algae die &rarr; decay consumes O₂ &rarr; fish kill. Lecturer&rsquo;s exact cross-section.</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 65 · activated sludge</span>
+        <img src="images/m6-activated-sludge-65.jpg" alt="Activated sludge process" />
+        <div class="slide-fig-caption">Activated sludge — aeration tank with returned biomass (RAS) and waste sludge (WAS).</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 69 · trickling filter</span>
+        <img src="images/m6-trickling-69.jpg" alt="Trickling filter cross-section" />
+        <div class="slide-fig-caption">Trickling filter — rotary distributor sprays wastewater over media; biofilm coats the rocks/plastic and consumes organics.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 83 · full WWTP</span>
+      <img src="images/m6-wwtp-83.jpg" alt="Full wastewater treatment plant isometric" />
+      <div class="slide-fig-caption">A real WWTP (EBDA, California) — bar screen, grit chamber, influent pump, primary clarifier, aeration basins, secondary clarifier, chlorine contact, water reclamation; sludge digester + dewatering + solar drying; generators running on digester gas.</div>
+    </div>
+  </div>
+
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
 </section>
 
@@ -6464,6 +7036,59 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <p style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin-top: 10px;">Settlement continues for <strong>10–30 years</strong> after closure. The site can&rsquo;t be built on until then.</p>
   </div>
 
+  <div class="diagram-interactive" id="dia-landfill">
+    <div class="diagram-title">🗑 Sanitary Landfill — Cross-Section</div>
+    <div class="diagram-sub">Tap each coloured layer to read what it does. The four protective layers + gas wells are precisely what separates a SANITARY landfill from open dumping.</div>
+    <svg viewBox="0 0 700 400" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Sanitary landfill cross-section">
+      <rect width="700" height="60" fill="#a8c4d8" opacity="0.45"/>
+      <text x="20" y="22" font-family="DM Sans" font-size="11" fill="#444" font-style="italic">atmosphere</text>
+      <path d="M0 78 Q60 70 120 76 T240 73 T360 78 T480 74 T600 78 T700 75 L700 88 L0 88 Z" fill="#7aa657"/>
+      <g class="diagram-hot" data-hot="gas-wells" data-label="Gas extraction wells" data-info="Vertical perforated pipes pull <strong>landfill gas</strong> off for flaring or beneficial use. The captured biogas in the stable methanogenic phase is ~55–60% CH₄ — used for flaring, boiler fuel, electricity via CHP, or upgraded to pipeline-grade methane (>97%) via PSA, membrane, or cryogenic separation.">
+        <rect x="180" y="50" width="10" height="240" fill="#8c8c8c" data-stroke="1"/>
+        <rect x="175" y="44" width="20" height="12" fill="#666"/>
+        <rect x="430" y="50" width="10" height="240" fill="#8c8c8c" data-stroke="1"/>
+        <rect x="425" y="44" width="20" height="12" fill="#666"/>
+      </g>
+      <g class="diagram-hot" data-hot="cap" data-label="Final cap (~1 m clay)" data-info="Applied when the cell is full. <strong>Minimises rainwater ingress</strong> (so less leachate forms) and <strong>traps fugitive methane</strong> so the extraction wells can capture it. Topped with soil + grass — never deep-rooted trees, whose roots can penetrate the clay.">
+        <rect x="40" y="88" width="620" height="22" fill="#8b6f4e" data-stroke="1"/>
+        <text x="350" y="103" font-size="11" fill="white" text-anchor="middle" font-family="DM Sans" font-weight="700">FINAL CLAY CAP (~1 m)</text>
+      </g>
+      <g class="diagram-hot" data-hot="waste" data-label="Compacted waste cells" data-info="Incoming MSW is spread, then <strong>compacted 3:1 to 5:1</strong> to maximise capacity. Cells settle for 10–30 years post-closure. Inside, waste passes through 5 phases of gas evolution: aerobic → anoxic transition → methanogenic onset → <strong>stable methanogenic</strong> (15–30 yr at CH₄ ~55–60%) → aerobic re-establishment.">
+        <rect x="40" y="110" width="620" height="32" fill="#5a4a3a" data-stroke="1"/>
+        <rect x="40" y="148" width="620" height="32" fill="#6b5a48" data-stroke="1"/>
+        <rect x="40" y="186" width="620" height="32" fill="#5a4a3a" data-stroke="1"/>
+        <rect x="40" y="224" width="620" height="32" fill="#6b5a48" data-stroke="1"/>
+        <text x="350" y="208" font-size="11" fill="#d0c4a8" text-anchor="middle" font-family="DM Sans" font-style="italic" opacity="0.9">MSW · compacted cells</text>
+      </g>
+      <g class="diagram-hot" data-hot="daily" data-label="Daily soil cover (~6 in)" data-info="A ~6-inch earth layer spread on top of each day&rsquo;s waste before the site closes for the night. <strong>The defining feature of a sanitary landfill</strong> (vs an open dump). Controls vectors (rats, flies), odour, fire risk, and windblown debris.">
+        <rect x="40" y="142" width="620" height="6" fill="#a87a4a" data-stroke="1"/>
+        <rect x="40" y="180" width="620" height="6" fill="#a87a4a" data-stroke="1"/>
+        <rect x="40" y="218" width="620" height="6" fill="#a87a4a" data-stroke="1"/>
+      </g>
+      <g class="diagram-hot" data-hot="leachate" data-label="Leachate collection system" data-info="<strong>Perforated pipes sloped to a sump</strong>, then pumped to a treatment tank. Captures contaminated liquid that percolates through the waste — heavy metals, organic acids, ammonia, salts. Without this, groundwater would be poisoned. Treated leachate then goes to a conventional wastewater plant.">
+        <rect x="40" y="262" width="620" height="6" fill="#444" data-stroke="1"/>
+        <circle cx="120" cy="265" r="3" fill="#bbb"/>
+        <circle cx="230" cy="265" r="3" fill="#bbb"/>
+        <circle cx="340" cy="265" r="3" fill="#bbb"/>
+        <circle cx="450" cy="265" r="3" fill="#bbb"/>
+        <circle cx="560" cy="265" r="3" fill="#bbb"/>
+        <text x="350" y="259" font-size="10" fill="#777" text-anchor="middle" font-family="DM Sans" font-style="italic">→ to leachate sump and treatment</text>
+      </g>
+      <g class="diagram-hot" data-hot="liner" data-label="Composite bottom liner" data-info="The <strong>critical barrier</strong> between waste and groundwater. Two layers: <strong>HDPE geomembrane (~1.5 mm)</strong> impermeable polymer sheet, PLUS <strong>compacted clay (k ~10⁻⁹ m/s)</strong> extremely low-permeability natural barrier. Modern landfills often add a second redundant liner. Combined leakage rate: ~1 L per hectare per day — practically zero.">
+        <rect x="40" y="268" width="620" height="5" fill="#1a1a1a" data-stroke="1"/>
+        <rect x="40" y="273" width="620" height="14" fill="#5a4030" data-stroke="1"/>
+        <text x="350" y="284" font-size="10" fill="white" text-anchor="middle" font-family="DM Sans" font-weight="600">HDPE + Clay liner</text>
+      </g>
+      <rect x="0" y="287" width="700" height="80" fill="#3a2f24"/>
+      <g class="diagram-hot" data-hot="gw" data-label="Groundwater table" data-info="What every layer above is designed to protect. Before the EPA mandated engineered landfills in the 1970s, leachate routinely contaminated drinking-water aquifers. <strong>The Love Canal disaster</strong> (Niagara Falls, 1978) was the wake-up call that led to Superfund legislation in the US.">
+        <line x1="0" y1="340" x2="700" y2="340" stroke="#4d8aa8" stroke-width="2.5" stroke-dasharray="6 4" data-stroke="1"/>
+        <text x="600" y="336" font-size="11" fill="#4d8aa8" font-style="italic" font-family="Fraunces">groundwater table</text>
+      </g>
+      <text x="350" y="390" font-size="11" fill="#888" text-anchor="middle" font-style="italic" font-family="Fraunces">↑ Tap any layer to learn what it does</text>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap a coloured layer above to read about it.</div>
+  </div>
+
   <div class="mini-check" data-check-id="m7-cover">
     <span class="mini-check-eyebrow">✋ Worth a pause</span>
     <div class="mini-check-q">Why is daily soil cover so important for a sanitary landfill?</div>
@@ -6491,6 +7116,62 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       </tbody>
     </table>
     <p style="font-size: 13px; margin-top: 10px;"><strong>Phase 4 is where the methane comes from.</strong> A well-managed landfill captures it for electricity (CHP), boilers, or grid injection after upgrading.</p>
+  </div>
+
+  <div class="diagram-interactive" id="dia-landfill-gas">
+    <div class="diagram-title">📈 Landfill Gas Evolution — 5 Phases over Time</div>
+    <div class="diagram-sub">The classic multi-curve plot every CHG 569 student must be able to draw. Tap any of the 5 phase bands to learn what's happening in the cells at that time.</div>
+    <svg viewBox="0 0 700 380" preserveAspectRatio="xMidYMid meet" class="diagram-svg" role="img" aria-label="Landfill gas evolution 5-phase curve">
+      <line x1="60" y1="320" x2="660" y2="320" stroke="#222" stroke-width="2"/>
+      <line x1="60" y1="40" x2="60" y2="320" stroke="#222" stroke-width="2"/>
+      <text x="22" y="44" font-size="11" font-family="DM Sans" fill="#222">100%</text>
+      <text x="22" y="100" font-size="11" font-family="DM Sans" fill="#222">80%</text>
+      <text x="22" y="156" font-size="11" font-family="DM Sans" fill="#222">60%</text>
+      <text x="22" y="212" font-size="11" font-family="DM Sans" fill="#222">40%</text>
+      <text x="22" y="268" font-size="11" font-family="DM Sans" fill="#222">20%</text>
+      <text x="32" y="324" font-size="11" font-family="DM Sans" fill="#222">0</text>
+      <text x="40" y="22" font-size="11" font-family="DM Sans" fill="#444" font-style="italic">gas composition (%)</text>
+      <text x="660" y="345" font-size="11" font-family="DM Sans" fill="#444" font-style="italic" text-anchor="end">→ time (days · months · years)</text>
+      <g class="diagram-hot" data-hot="ph1" data-label="Phase 1 — Aerobic (days to weeks)" data-info="Oxygen trapped in the buried waste is consumed by aerobic microbes. <strong>O₂ falls 20% → 0%</strong>; <strong>CO₂ rises 0 → ~20%</strong>; N₂ stays near 80%. Short phase — finishes once trapped O₂ is exhausted. Heat output peaks at ~70 °C (composting-like).">
+        <rect x="60" y="40" width="60" height="280" fill="rgba(184,144,47,0.10)" data-stroke="1"/>
+        <text x="90" y="58" font-size="11" font-family="DM Sans" text-anchor="middle" font-weight="700" fill="#b8902f">PHASE 1</text>
+        <text x="90" y="74" font-size="9" font-family="DM Sans" text-anchor="middle" fill="#777">Aerobic</text>
+      </g>
+      <g class="diagram-hot" data-hot="ph2" data-label="Phase 2 — Anoxic transition (months)" data-info="Acidogenesis dominates. <strong>CO₂ keeps rising to peak ~75%</strong>; <strong>H₂ briefly peaks ~20%</strong> then drops; N₂ falls; no CH₄ yet. Conditions become anoxic as O₂ is fully consumed. Highly acidic leachate produced (pH 4–6).">
+        <rect x="120" y="40" width="80" height="280" fill="rgba(161,77,42,0.10)" data-stroke="1"/>
+        <text x="160" y="58" font-size="11" font-family="DM Sans" text-anchor="middle" font-weight="700" fill="#a14d2a">PHASE 2</text>
+        <text x="160" y="74" font-size="9" font-family="DM Sans" text-anchor="middle" fill="#777">Anoxic</text>
+      </g>
+      <g class="diagram-hot" data-hot="ph3" data-label="Phase 3 — Methanogenic onset (months to years)" data-info="Methanogen bacteria become active. <strong>CH₄ first appears and climbs from 0 → ~50%</strong>; CO₂ falls from peak toward ~50%; H₂ returns to 0; N₂ drops to ~5%. Leachate pH starts to rise back toward neutral.">
+        <rect x="200" y="40" width="100" height="280" fill="rgba(45,88,71,0.08)" data-stroke="1"/>
+        <text x="250" y="58" font-size="11" font-family="DM Sans" text-anchor="middle" font-weight="700" fill="#2d5847">PHASE 3</text>
+        <text x="250" y="74" font-size="9" font-family="DM Sans" text-anchor="middle" fill="#777">Methanogenic onset</text>
+      </g>
+      <g class="diagram-hot" data-hot="ph4" data-label="Phase 4 — Stable methanogenic (15–30+ years)" data-info="<strong>The phase that matters for energy recovery.</strong> Composition stabilises at <strong>CH₄ ≈ 55–60%, CO₂ ≈ 40%</strong>, trace H₂S and NH₃. Settlement curve climbs from ~30% → ~95%. Lasts <strong>15–30 years</strong> in a typical landfill (small CH₄ quantities for up to 100 yr). This is where landfill-gas-to-energy systems generate their revenue.">
+        <rect x="300" y="40" width="240" height="280" fill="rgba(90,140,58,0.10)" data-stroke="1"/>
+        <text x="420" y="58" font-size="11" font-family="DM Sans" text-anchor="middle" font-weight="700" fill="#5a8c3a">PHASE 4 · stable methanogenic</text>
+        <text x="420" y="74" font-size="9" font-family="DM Sans" text-anchor="middle" fill="#777">15–30 years · the methane-recovery phase</text>
+      </g>
+      <g class="diagram-hot" data-hot="ph5" data-label="Phase 5 — Aerobic re-establishment" data-info="After the substrate is exhausted, atmospheric air re-enters. <strong>O₂ climbs back from 0 → 20%</strong>; <strong>N₂ rises back to ~80%</strong>; <strong>CH₄ and CO₂ both fall toward zero</strong>. Settlement reaches ~100%. The landfill is now stable — pollution potential has effectively ceased. Can support light after-use (sports fields, parking).">
+        <rect x="540" y="40" width="120" height="280" fill="rgba(184,144,47,0.10)" data-stroke="1"/>
+        <text x="600" y="58" font-size="11" font-family="DM Sans" text-anchor="middle" font-weight="700" fill="#b8902f">PHASE 5</text>
+        <text x="600" y="74" font-size="9" font-family="DM Sans" text-anchor="middle" fill="#777">Aerobic re-establishment</text>
+      </g>
+      <path d="M 60 92 L 90 100 L 130 220 L 200 290 L 280 295 L 420 295 L 540 295 L 600 130 L 660 88" fill="none" stroke="#a14d2a" stroke-width="2.5"/>
+      <text x="664" y="92" font-size="10" font-family="DM Sans" fill="#a14d2a" font-weight="700">N₂</text>
+      <path d="M 60 320 L 90 268 L 130 60 L 175 130 L 220 150 L 280 180 L 420 200 L 540 220 L 600 290 L 660 318" fill="none" stroke="#5a4a3a" stroke-width="2.5"/>
+      <text x="664" y="200" font-size="10" font-family="DM Sans" fill="#5a4a3a" font-weight="700">CO₂</text>
+      <path d="M 60 320 L 200 320 L 250 270 L 300 180 L 360 130 L 540 130 L 600 280 L 660 318" fill="none" stroke="#2d5847" stroke-width="3"/>
+      <text x="664" y="135" font-size="11" font-family="DM Sans" fill="#2d5847" font-weight="700">CH₄</text>
+      <path d="M 60 320 L 130 320 L 160 268 L 175 256 L 200 320 L 660 320" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="3 3"/>
+      <text x="186" y="248" font-size="9" font-family="DM Sans" fill="#888">H₂</text>
+      <path d="M 60 100 L 90 130 L 130 320 L 540 320 L 600 256 L 660 100" fill="none" stroke="#4d8aa8" stroke-width="2" stroke-dasharray="2 4"/>
+      <text x="664" y="105" font-size="10" font-family="DM Sans" fill="#4d8aa8" font-weight="700">O₂</text>
+      <path d="M 60 295 L 200 290 L 280 240 L 420 100 L 540 60 L 660 50" fill="none" stroke="#b8902f" stroke-width="2" stroke-dasharray="6 3" opacity="0.7"/>
+      <text x="552" y="50" font-size="10" font-family="DM Sans" fill="#b8902f" font-style="italic">settlement</text>
+      <text x="350" y="370" font-size="11" fill="#888" text-anchor="middle" font-style="italic" font-family="Fraunces">↑ Tap a phase band to learn what's happening in the waste</text>
+    </svg>
+    <div class="diagram-info-panel placeholder">— Tap any vertical phase band above. Each transition is months to years long, except Phase 4 which lasts 15–30+ years.</div>
   </div>
 
   <div class="card">
@@ -6567,6 +7248,44 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <button class="quiz-option" data-correct="false"><span class="quiz-option-letter">D</span>~50% O₂, ~50% N₂</button>
     </div>
     <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="card">
+    <h3>📑 Slide gallery — Module VII</h3>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 6 · sanitary landfill 3D</span>
+      <img src="images/m7-landfill-3d-06.jpg" alt="Sanitary landfill 3D cross-section" />
+      <div class="slide-fig-caption">The lecturer&rsquo;s detailed cutaway: topsoil/sand/clay cap, compacted waste body, methane wells + probes, leachate pipes &amp; storage tank, synthetic liner, groundwater monitoring wells, gas-to-energy compressor and generator buildings.</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 8 · active landfill</span>
+        <img src="images/m7-active-landfill-08.jpg" alt="Active landfill operation isometric" />
+        <div class="slide-fig-caption">Active landfill operation — working face with truck unloading + dozer compacting, weighbridge, cell bunds, gas/leachate monitoring.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 14 · WTE incinerator</span>
+        <img src="images/m7-incinerator-14.jpg" alt="Waste-to-energy incinerator 14-part schematic" />
+        <div class="slide-fig-caption">WTE incinerator — 14 numbered parts: tipping area, waste pit, overhead crane, feed grates, combustion grate, secondary chamber, boiler, superheater, economiser, lime scrubber, fabric filters, fan, ash storage.</div>
+      </div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 17 · biogas upgrading tree</span>
+        <img src="images/m7-biogas-tree-17.jpg" alt="Biogas utilisation tree" />
+        <div class="slide-fig-caption">Raw biogas &rarr; treatment branches (no treatment / S-removal / upgrade / compression) &rarr; end uses (stove, boiler, CHP, fuel cell, liquefaction, grid).</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Slide 38 · waste hierarchy pyramid</span>
+        <img src="images/m7-hierarchy-38.jpg" alt="Hierarchy of waste management options" />
+        <div class="slide-fig-caption">6-tier pyramid: Prevention &rarr; Minimisation &rarr; Reuse &rarr; Recycling &rarr; Energy Recovery &rarr; Disposal. Most-favoured at top.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Slide 40 · e-waste trade map</span>
+      <img src="images/m7-ewaste-map-40.jpg" alt="Global e-waste trafficking map" />
+      <div class="slide-fig-caption">Global illegal-waste shipment routes from OECD producers to dumping zones in Africa, Asia, Latin America. <strong>Côte d&rsquo;Ivoire (Probo Koala 2006), Somalia (post-tsunami toxic barrels 2004), Nigeria, India, China, Philippines</strong> all flagged. The justice dimension.</div>
+    </div>
   </div>
 
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
@@ -6784,6 +7503,69 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     <div class="quiz-feedback"></div>
   </div>
 
+  <div class="card">
+    <h3>📑 Slide gallery — Module VIII (Sustainable Development + Biomimicry)</h3>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 8 · Slide 16 · cradle-to-cradle</span>
+        <img src="images/m8-c2c-16.jpg" alt="Cradle-to-cradle vs cradle-to-grave" />
+        <div class="slide-fig-caption">Cradle-to-grave (top, linear) vs Cradle-to-cradle (bottom, closed loop). The dashed arrow shows &ldquo;closing the loop&rdquo;.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 8 · Slide 23 · Kalundborg 2022</span>
+        <img src="images/m8-kalundborg-23.jpg" alt="Kalundborg industrial symbiosis 2022" />
+        <div class="slide-fig-caption">Modern Kalundborg symbiosis — water (blue), energy (yellow), materials (green) flows among 12+ companies in a single industrial ecosystem.</div>
+      </div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 8 · Slide 43 · ISO 14040</span>
+        <img src="images/m8-lca-procedure-43.jpg" alt="LCA procedure ISO 14040" />
+        <div class="slide-fig-caption">LCA procedure (ISO 14040): Goal &amp; scope &harr; Inventory &harr; Impact assessment (classification + characterisation + weighting) &harr; Interpretation. Outputs: GWP, acidification, eutrophication, etc.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 8 · Slide 48 · LCA 5 stages</span>
+        <img src="images/m8-lca-stages-48.jpg" alt="LCA 5 stages life cycle model" />
+        <div class="slide-fig-caption">LCA Life Cycle Model — Raw Materials → Manufacturing → Use → Recycle/Waste; inputs (materials, energy) and outputs (emissions, wastes, coproducts).</div>
+      </div>
+    </div>
+    <h4 style="margin-top: 20px;">🌿 Biomimicry pairings (Module 11 PDF)</h4>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Mod 11 · Slide 10 · Life&rsquo;s Principles</span>
+      <img src="images/m11-principles-10.jpg" alt="Biomimicry Life's Principles hexagonal wheel" />
+      <div class="slide-fig-caption">Biomimicry 3.8 Life&rsquo;s Principles — 6 sectors around the centre &ldquo;Life creates conditions conducive to life&rdquo;: adapt, locally attuned, life-friendly chemistry, resource efficient, integrate dev with growth, evolve to survive.</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 11 · Slide 16 · termite mound → Eastgate</span>
+        <img src="images/m11-termite-16.jpg" alt="Termite mound to Eastgate Centre" />
+        <div class="slide-fig-caption">Termite mound passive ventilation &rarr; Eastgate Centre, Harare. ~35% less energy than conventional building.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 11 · Slide 17 · 3 pairings</span>
+        <img src="images/m11-pairings-17.jpg" alt="Burr-Velcro, boxfish-Mercedes, kingfisher-Shinkansen" />
+        <div class="slide-fig-caption">Burdock &rarr; Velcro · Boxfish &rarr; Mercedes Bionic Car (20% lower fuel, 80% lower NO<sub>x</sub>) · Kingfisher &rarr; Shinkansen 700-series (10% faster, 30% efficient, under 70 dB).</div>
+      </div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 11 · Slide 27 · Lotus effect</span>
+        <img src="images/m11-lotus-27.jpg" alt="Lotus leaf and self-cleaning surface" />
+        <div class="slide-fig-caption">The Lotus Effect &rarr; self-cleaning surfaces, anti-fouling coatings, super-hydrophobic paints (Lotusan).</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 11 · Slide 32 · gecko toes</span>
+        <img src="images/m11-gecko-32.jpg" alt="Gecko foot and climbing pad" />
+        <div class="slide-fig-caption">Gecko setae &rarr; dry adhesives + climbing robots. Van der Waals forces, no glue, no residue.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Mod 11 · Slide 35 · kingfisher &rarr; Shinkansen</span>
+      <img src="images/m11-kingfisher-35.jpg" alt="Kingfisher beak and Shinkansen nose comparison" />
+      <div class="slide-fig-caption">Side-by-side: kingfisher beak shape that dives splash-free into water vs the Shinkansen 500-series nose cone that solved the sonic-boom-on-exit-from-tunnel problem.</div>
+    </div>
+  </div>
+
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
 </section>
 
@@ -6971,6 +7753,50 @@ html, body { overflow-x: hidden; max-width: 100vw; }
       <button class="quiz-option" data-correct="false"><span class="quiz-option-letter">D</span>Skin cancer</button>
     </div>
     <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="card">
+    <h3>📑 Slide gallery — Module IX (Ethics · Noise · Radiation · Digital)</h3>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Mod 9 · Slide 15 · EM spectrum</span>
+      <img src="images/m9-em-spectrum-15.jpg" alt="Electromagnetic spectrum: ionising vs non-ionising" />
+      <div class="slide-fig-caption">EM spectrum with the <strong>ionising / non-ionising boundary</strong> marked at visible-UV. Below the line: thermal effects only (radio, microwave, IR). Above: bond-breaking + DNA damage (UV-B/C, X-rays, gamma).</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 9 · Slide 18 · radon entry</span>
+        <img src="images/m9-radon-18.jpg" alt="Radon entry pathways into a home" />
+        <div class="slide-fig-caption">7 radon entry routes: floor cracks, construction joints, wall cracks, gaps in suspended floors, gaps around service pipes, wall cavities, water supply. ~1 in 15 US homes test high.</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 9 · Slide 19 · indoor pollution</span>
+        <img src="images/m9-indoor-19.jpg" alt="Indoor pollution sources room by room" />
+        <div class="slide-fig-caption">Room-by-room indoor pollution: showers (chloroform), paint (Pb), fireplaces (PM), ducts (mould), furniture (formaldehyde), gas stoves (NO<sub>x</sub>), garage (CO), pesticides (VOCs), soil under house (radon).</div>
+      </div>
+    </div>
+    <h4 style="margin-top: 20px;">💻 Digital Pollution (Module 10 PDF)</h4>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Mod 10 · Slide 13 · undersea cables</span>
+      <img src="images/m10-cables-13.jpg" alt="Global undersea internet cable map" />
+      <div class="slide-fig-caption">How the internet physically travels across oceans — yellow lines owned by Amazon/Facebook/Google/Microsoft; blue are other operators. The infrastructure behind "cloud" computing.</div>
+    </div>
+    <div class="slide-fig-row">
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 10 · Slide 16 · smartphone metals</span>
+        <img src="images/m10-phone-metals-16.jpg" alt="Critical metals in a smartphone" />
+        <div class="slide-fig-caption">Exploded smartphone showing the rare metals per component: indium (touchscreen), rare earths (display, speakers, vibration), Ni/Ga/Ta (electronics), Li/Co (battery).</div>
+      </div>
+      <div class="slide-fig">
+        <span class="slide-fig-eyebrow">Mod 10 · Slide 18 · rare-earth flow</span>
+        <img src="images/m10-rare-earth-18.jpg" alt="Rare earth metals production flow" />
+        <div class="slide-fig-caption">Per 1 tonne of rare-earth metal: ~4.5 t HCl, ~10,000 m³ acid fumes, ~1 t radioactive tailings, ~100,000 L acidic wastewater. From open-pit mine to finished metal.</div>
+      </div>
+    </div>
+    <div class="slide-fig">
+      <span class="slide-fig-eyebrow">Mod 10 · Slide 29 · data centre water</span>
+      <img src="images/m10-water-29.jpg" alt="Data center water footprint" />
+      <div class="slide-fig-caption">Off-site (cooling tower at the power plant) + on-site (chiller + CRAH cooling) water consumption. GPT-3 training run consumed ~700,000 L freshwater in a state-of-the-art US data centre.</div>
+    </div>
   </div>
 
   <label class="checkbox-section" data-section-check><input type="checkbox"> Mark module as reviewed</label>
@@ -9349,6 +10175,25 @@ scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 's
 document.addEventListener('click', e => {
   const card = e.target.closest('[data-reveal]');
   if (card) card.classList.toggle('revealed');
+});
+
+// =========== INTERACTIVE DIAGRAMS (clickable hotspots reveal explanations) ===========
+// Any element with [data-hot] inside a .diagram-interactive container becomes a clickable hotspot.
+// data-label = short label · data-info = HTML explanation shown in the panel below.
+document.addEventListener('click', e => {
+  const hot = e.target.closest('[data-hot]');
+  if (!hot) return;
+  const diagram = hot.closest('.diagram-interactive');
+  if (!diagram) return;
+  const panel = diagram.querySelector('.diagram-info-panel');
+  if (!panel) return;
+  diagram.querySelectorAll('[data-hot].active').forEach(el => el.classList.remove('active'));
+  hot.classList.add('active');
+  const label = hot.dataset.label || '';
+  const info = hot.dataset.info || '';
+  panel.classList.remove('placeholder');
+  panel.innerHTML = (label ? `<span class="diagram-info-label">${label}</span>` : '') + info;
+  if (typeof Analytics !== 'undefined') Analytics.trackOnce('diagram-hotspot-clicked', { diagram: diagram.id || 'unknown', hot: hot.dataset.hot });
 });
 
 // =========== MINI-CHECKS (skim-pause sub-questions in long modules) ===========
